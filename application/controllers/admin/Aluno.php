@@ -68,7 +68,8 @@ class Aluno extends CI_Controller {
     }
 
     public function horasRealizadas(){
-        $this->load->view('admin/horas-realizadas-aluno');
+        $data['usuarios'] = $this->mod_usuario->getAllUsuariosByNivel(1);
+        $this->load->view('admin/horas-realizadas-aluno', $data);
     }
 
 }
