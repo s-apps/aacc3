@@ -13,9 +13,17 @@ class Professor extends CI_Controller {
                 redirect('dashboard');
             }
         }
+        $this->load->model('mod_usuario');
+        $this->load->model('mod_curso');
     }
 
     public function index(){
         $this->load->view('admin/professor');
+    }
+
+    public function adicionar(){
+        $data['acao'] = 'adicionando';
+        $data['cursos'] = $this->mod_curso->getAll();
+        $this->load->view('admin/formulario-professor', $data);
     }
 }
