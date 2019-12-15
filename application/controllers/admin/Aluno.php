@@ -67,4 +67,8 @@ class Aluno extends CI_Controller {
         echo json_encode($data);
     }
 
+    public function horasRealizadas(){
+        $this->load->view('admin/horas-realizadas-aluno');
+    }
+
 }
