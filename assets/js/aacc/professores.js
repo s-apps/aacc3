@@ -1,5 +1,6 @@
 var $table  = $("#lista-professores");
 var base_url = "http://localhost:8000/";
+
 $(document).ready(function(){
     $table.bootstrapTable({
         url: base_url + "admin/professor/lista",
@@ -33,7 +34,7 @@ $(document).ready(function(){
         responseHandler: function ( data ) {
             return {
                 total: data.total,
-                rows: data.professores
+                rows: data.usuarios
             };
         },
         formatLoadingMessage: function () {
@@ -52,4 +53,67 @@ function queryParams(params) {
         order: params.order,
         search: params.search
     };
+}
+
+$table.on("check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table", function () {
+    var tamanho = $table.bootstrapTable("getSelections").length;
+    $("#btn-editar").prop("disabled", (tamanho == 0 || tamanho > 1) ? true : false);
+    $("#btn-excluir").prop("disabled",  tamanho == 0);
+});
+
+$("#btn-editar").on("click", function(){
+    var usuario_id = getSelections();
+    window.location.href = base_url + "admin/professor/editar/" + usuario_id[0];
+});
+
+$("#btn-excluir").on("click", function(){
+    exibirMensagemDeConfirmacao("Confirmação!", "Deseja realmente excluir os registros selecionados?");
+});
+
+function excluir(){
+    var usuario_ids = getSelections();
+    $.post({
+        url: base_url + "admin/aluno/excluir",
+        dataType: "JSON",
+        data: { usuario_ids: usuario_ids }
+    })
+    .done(function(data){
+        if(data.sucesso){
+            $table.bootstrapTable("remove", {
+                field: "usuario_id",
+                values: usuario_ids
+            });
+            $table.bootstrapTable("refresh", { silent: true });
+            $("#btn-editar, #btn-excluir").prop("disabled", true);
+        }
+    });
+}
+
+function exibirMensagemDeConfirmacao(titulo, mensagem){
+    iziToast.show({
+        title: titulo,
+        message: mensagem,
+        position: "center",
+        timeout: 0,
+        animateInside: false,
+        buttons: [
+            ["<button><b>Excluir</b></button>", function (instance, toast, button, e, inputs) {
+                instance.hide({ transitionOut: "fadeOut" }, toast, "buttonExcluir");
+            }, false], // true to focus
+            ["<button><b>Cancelar</b></button>", function (instance, toast, button, e, inputs) {
+                instance.hide({ transitionOut: "fadeOut" }, toast, "buttonCancelar");
+            }, false] // true to focus
+        ],
+        onClosing: function(instance, toast, closedBy){
+            if(closedBy == "buttonExcluir"){
+                excluir();
+            }
+        }       
+    });        
+}
+
+function getSelections() {
+    return $.map($table.bootstrapTable("getSelections"), function (row) {
+        return row.usuario_id;
+    });
 }

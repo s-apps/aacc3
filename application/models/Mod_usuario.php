@@ -44,7 +44,36 @@ class Mod_usuario extends CI_Model {
     }
 
     public function salvarComoProfessor($usuario){
-
+        if($usuario['acao'] == 'adicionando'){
+            $this->db->where('email', $usuario['email']);
+            $num_rows = $this->db->count_all_results('usuario');
+            if($num_rows == 0){
+                $curso_ids = $usuario['curso_ids'];
+                unset($usuario['acao']);
+                unset($usuario['curso_ids']);
+                unset($usuario['usuario_ra']);
+                $usuario['senha'] = password_hash($usuario['senha'], PASSWORD_DEFAULT);
+                if($this->db->insert('usuario', $usuario)){
+                    $professor_id = $this->db->insert_id();
+                    foreach($curso_ids as $curso_id){
+                        $this->db->insert('professor_leciona', array('professor_id' => $professor_id, 'curso_id' => intval($curso_id)));
+                    }
+                    return '';
+                }else{
+                    return 'Ocorreu um erro inserindo usuário aluno';
+                }
+            }
+        }else{
+            unset($usuario['acao']);
+            unset($usuario['curso_ids']);
+            unset($usuario['usuario_ra']);
+            if(isset($usuario['senha'])){
+                $usuario['senha'] = password_hash($usuario['senha'], PASSWORD_DEFAULT);
+            }
+            $this->db->where('usuario_id', $usuario['usuario_id']);
+            $this->db->update('usuario', $usuario);
+            return '';
+        }
     }
 
     public function salvarComoAluno($usuario){
