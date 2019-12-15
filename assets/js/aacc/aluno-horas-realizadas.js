@@ -1,6 +1,6 @@
 $(function(){
     $("#usuario_id").select2({
-        placeholder: "Selecione um aluno",
+        placeholder: "Selecione o aluno",
         theme: "bootstrap",
         language: { noResults: function () {
             return "Nenhum resultado encontrado";

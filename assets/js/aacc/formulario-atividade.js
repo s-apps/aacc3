@@ -1,5 +1,5 @@
 var base_url = "http://localhost:8000/";
-var $usuario_ra = $("#usuario_ra");
+var $usuario_id = $("#usuario_id");
 var $categoria_id = $("#categoria_id");
 var $modalidade_id = $("#modalidade_id");
 var $comprovante_id = $("#comprovante_id");
@@ -8,7 +8,7 @@ var $frmAtividade = $("#frmAtividade");
 // var segmentos = url.split('/');
 
 $(document).ready(function(){
-    $usuario_ra.select2({
+    $usuario_id.select2({
         placeholder: "Selecione o aluno",
         theme: "bootstrap",
         language: { noResults: function () {

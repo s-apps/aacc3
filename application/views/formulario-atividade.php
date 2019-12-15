@@ -40,15 +40,15 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="usuario_ra">Aluno</label>
-                    <select id="usuario_ra" name="usuario_ra" class="form-control">
+                    <label for="usuario_id">Aluno</label>
+                    <select id="usuario_id" name="usuario_id" class="form-control">
                         <option></option>
                         {% for usuario in usuarios %}
                         {% set selected = ''%}
-                        {% if usuario.usuario_ra == atividade.usuario_ra and usuario.usuario_ra is defined and acao == 'editando' %}
+                        {% if usuario.usuario_id == atividade.usuario_id and usuario.usuario_id is defined and acao == 'editando' %}
                         {% set selected = ' selected="selected"' %}
                         {% endif %}
-                        <option value="{{ usuario.usuario_ra }}"{{ selected }}>{{ usuario.nome }}</option>
+                        <option value="{{ usuario.usuario_id }}"{{ selected }}>{{ usuario.usuario_ra }} | {{ usuario.nome }} | {{ usuario.email }}</option>
                         {% endfor %}
                     </select>    
                 </div>
