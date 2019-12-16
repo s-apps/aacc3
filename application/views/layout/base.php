@@ -60,7 +60,7 @@
       <script src="{{ constant('BASE_URL') }}assets/moment/locale/pt-br.js"></script>
       <script src="{{ constant('BASE_URL') }}assets/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
       <script src="{{ constant('BASE_URL') }}assets/izitoast/js/iziToast.min.js"></script>
-      <script src="{{ constant('BASE_URL') }}assets/js/aacc/base_url.js"></script>	
+      <script src="{{ constant('BASE_URL') }}assets/js/aacc/comum.js"></script>	
     {% endblock %}
 
   </body>
