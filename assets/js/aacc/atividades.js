@@ -1,5 +1,5 @@
 var $table  = $("#lista-atividades");
-var base_url = "http://localhost:8000/";
+//var base_url = "http://localhost:8000/";
 $(document).ready(function(){
     $table.bootstrapTable({
         url: base_url + "atividade/lista",

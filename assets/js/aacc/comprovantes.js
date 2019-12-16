@@ -1,5 +1,5 @@
 var $table  = $("#lista-comprovantes");
-var base_url = "http://localhost:8000/";
+//var base_url = "http://localhost:8000/";
 $(document).ready(function(){
     $table.bootstrapTable({
         url: base_url + "admin/comprovante/lista",

@@ -1,4 +1,4 @@
-var base_url = "http://localhost:8000/";
+//var base_url = "http://localhost:8000/";
 var $usuario_id = $("#usuario_id");
 var $categoria_id = $("#categoria_id");
 var $modalidade_id = $("#modalidade_id");

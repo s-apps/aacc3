@@ -1,4 +1,4 @@
-var base_url = "http://localhost:8000/";
+//var base_url = "http://localhost:8000/";
 
 $("#frmCategoria").on("submit", function(event){
     event.preventDefault();

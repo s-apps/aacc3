@@ -56,7 +56,7 @@ function enviarDados(usuario) {
       var resposta = JSON.parse(XHR.responseText);
       console.log(resposta);
       if(resposta.sucesso){
-          window.location.href = 'http://localhost:8000/dashboard';
+          window.location.href = base_url + 'dashboard';
       }else{
           desligarLoading();
           exibirErro();
@@ -67,7 +67,7 @@ function enviarDados(usuario) {
     //   alert('Oops! Something went wrong.');
     });
     // Set up our request
-    XHR.open('POST', 'http://localhost:8000/login/entrar');
+    XHR.open('POST', base_url + 'login/entrar');
     // Send our FormData object; HTTP headers are set automatically
     XHR.send(FD);
 }
