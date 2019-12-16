@@ -71,5 +71,10 @@ class Aluno extends CI_Controller {
         $data['usuarios'] = $this->mod_usuario->getAllUsuariosByNivel(1);
         $this->load->view('admin/horas-realizadas-aluno', $data);
     }
-
+    
+    public function getHorasRealizadas(){
+    	$usuario_id = $this->input->post('usuario_id');
+	$data['erro'] = getHorasRealizadas($usuario_id);
+        echo json_encode($data);
+    }
 }
