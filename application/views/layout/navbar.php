@@ -30,7 +30,7 @@
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"{{ disabled }}>Relatórios</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown02">
+            <div class="dropdown-menu" aria-labelledby="dropdown03">
                 <a class="dropdown-item" href="{{ constant('BASE_URL') }}admin/aluno/horas-realizadas-aluno"><i class="fas fa-clock"></i> Aluno - Horas Realizadas</a>
             </div>
         </li>
