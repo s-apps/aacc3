@@ -1,3 +1,7 @@
+{% set disabled = '' %}
+{% if constant('USUARIO_NIVEL') == 1 %}
+{% set disabled = 'disabled' %}
+{% endif %}
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
 </button>
@@ -7,7 +11,7 @@
             <a class="nav-link" href="{{ constant('BASE_URL') }}dashboard"><i class="fas fa-home"></i></a>
         </li>
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled>Cadastros</a>
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"{{ disabled }}>Cadastros</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
                 <a class="dropdown-item" href="{{ constant('BASE_URL') }}admin/categoria"><i class="fas fa-th-large"></i> Categorias</a>
                 <a class="dropdown-item" href="{{ constant('BASE_URL') }}admin/comprovante"><i class="fas fa-certificate"></i> Comprovantes</a>
@@ -25,7 +29,7 @@
             </div>
         </li>
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Relatórios</a>
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"{{ disabled }}>Relatórios</a>
             <div class="dropdown-menu" aria-labelledby="dropdown02">
                 <a class="dropdown-item" href="{{ constant('BASE_URL') }}admin/aluno/horas-realizadas-aluno"><i class="fas fa-clock"></i> Aluno - Horas Realizadas</a>
             </div>
