@@ -74,7 +74,7 @@ class Aluno extends CI_Controller {
     
     public function getHorasRealizadas(){
     	$usuario_id = $this->input->post('usuario_id');
-	$data['erro'] = getHorasRealizadas($usuario_id);
+	$data['horasRealizadas'] = $this->mod_usuario->getHorasRealizadas($usuario_id);
         echo json_encode($data);
     }
 }

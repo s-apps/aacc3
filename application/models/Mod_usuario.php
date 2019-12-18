@@ -35,6 +35,16 @@ class Mod_usuario extends CI_Model {
         return $this->db->get('usuario')->row_array();
     }
 
+    public function getHorasRealizadas($usuario_id){
+	$this->db->where('usuario_id', $usuario_id);
+	$atividades = $this->db->get('atividade')->result_array();
+        foreach($atividades as &$atividade){
+	  $atividade['data'] = mysqlParaView($atividade['data']);	
+        }
+	return $atividades;
+    }
+
+	
     public function salvar($usuario){
         if($usuario['nivel'] == 0){
             return $this->salvarComoProfessor($usuario);
