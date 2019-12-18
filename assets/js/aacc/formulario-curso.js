@@ -1,5 +1,3 @@
-//var base_url = "http://localhost:8000/";
-
 $("#frmCurso").on("submit", function(event){
     event.preventDefault();
     var acao = $("#acao").val()

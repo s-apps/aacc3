@@ -1,5 +1,3 @@
-//var base_url = "http://localhost:8000/";
-
 $(function(){
     $("#curso_id").select2({
         placeholder: "Selecione um curso",
