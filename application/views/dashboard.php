@@ -4,7 +4,8 @@
 {% block content %}
 
 {% if constant('USUARIO_NIVEL') == 0 %}
-	administrador
+	<!-- exibir,adicionar,editar,excluir avisos -->
+        <!-- exibir,editar limite de horas atividades -->
 {% else %}
 	<!-- exibir avisos -->
 	<!-- aluno desabilitar botoes adicionar, editar e excluir dos avisos -->

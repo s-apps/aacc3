@@ -9,6 +9,7 @@ class Dashboard extends CI_Controller {
         if(! USUARIO_LOGADO){
             redirect('login');
         }
+        $this->load->helper('formata_data');
 	$this->load->model('mod_dashboard');
     }    
 
@@ -24,5 +25,17 @@ class Dashboard extends CI_Controller {
 	}
         $this->load->view('dashboard');
     }
+
+    public function getAvisos(){
+        $limit = $this->input->get('limit');
+        $offset = $this->input->get('offset');
+        $sort = $this->input->get('sort');
+        $order = $this->input->get('order');
+        $search = $this->input->get('search');
+        $total = $this->mod_dashboard->getAvisos($limit, $offset, $sort, $order, $search, true);
+        $avisos = $this->mod_dashboard->getAvisos($limit, $offset, $sort, $order, $search);
+        $data = array('total' => $total, 'avisos' => $avisos);
+        echo json_encode($data);
+    }	
 
 }
