@@ -16,12 +16,12 @@ class Dashboard extends CI_Controller {
     public function index(){
 	$data['avisos'] = $this->mod_dashboard->getAvisos();
 	if(USUARIO_NIVEL == 0){
-		// get horas realizadas
-		// get horas a realizar
-		// get limite de horas total a cumprir
-		// get quantidade de atividades aguardando validação
+		
 	}else{
-	
+	      	//get horas realizadas
+		//get horas a realizar
+		//get limite de horas total a cumprir
+		//get quantidade de atividades aguardando validação
 	}
         $this->load->view('dashboard');
     }
