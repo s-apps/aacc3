@@ -122,7 +122,7 @@ $frmAtividade.on("submit", function(event){
         comprovante_id: $("#comprovante_id").val(),
         validacao: $("#validacao").val(),
         imagem_comprovante: $("#imagem_comprovante").val()
-    }
+    };
     if(camposValidos(atividade)){
         var data = new FormData(this);
         $.each(atividade, function(key, item){

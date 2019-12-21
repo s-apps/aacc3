@@ -4,7 +4,7 @@
 {% block content %}
 <div class="card">
   <div class="card-body">
-    <h5 class="card-title"><i class="fas fa-graduation-cap"></i> Aluno - Horas realizadas</h5>
+    <h5 class="card-title"><i class="fas fa-clock"></i> Aluno - Horas realizadas</h5>
     <hr>
     <div class="row">
         <div class="col-6">

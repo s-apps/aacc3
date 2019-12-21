@@ -16,14 +16,14 @@ class Dashboard extends CI_Controller {
     public function index(){
 	//$data['avisos'] = $this->mod_dashboard->getAvisos();
 	if(USUARIO_NIVEL == 0){
-		
+		$data['limite_atividades'] = $this->mod_dashboard->getLimiteAtividades();
 	}else{
 	      	//get horas realizadas
 		//get horas a realizar
 		//get limite de horas total a cumprir
 		//get quantidade de atividades aguardando validação
 	}
-        $this->load->view('dashboard');
+        $this->load->view('dashboard', $data);
     }
 
     public function getAvisos(){
@@ -37,5 +37,15 @@ class Dashboard extends CI_Controller {
         $data = array('total' => $total, 'avisos' => $avisos);
         echo json_encode($data);
     }	
+
+    public function salvarAviso(){
+        $aviso = [
+            'data' => viewParaMysql($this->input->post('data_aviso')),
+            'titulo' => $this->input->post('titulo'),
+            'aviso' => $this->input->post('aviso')
+        ];
+        $data['erro'] = $this->mod_dashboard->salvarAviso($aviso);
+        echo json_encode($data);
+    }
 
 }
