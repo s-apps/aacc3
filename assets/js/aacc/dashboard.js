@@ -1,3 +1,5 @@
+var $table = $("#lista-avisos");
+
 $(document).ready(function(){
     $table.bootstrapTable({
         url: base_url + "dashboard/getAvisos",
@@ -34,3 +36,13 @@ $(document).ready(function(){
         }
     });
 });
+
+function queryParams(params) {
+    return {
+        limit: params.limit,
+        offset: params.offset,
+        sort: params.sort,
+        order: params.order,
+        search: params.search
+    };
+}

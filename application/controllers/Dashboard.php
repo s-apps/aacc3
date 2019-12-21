@@ -10,11 +10,11 @@ class Dashboard extends CI_Controller {
             redirect('login');
         }
         $this->load->helper('formata_data');
-	$this->load->model('mod_dashboard');
+	    $this->load->model('mod_dashboard');
     }    
 
     public function index(){
-	$data['avisos'] = $this->mod_dashboard->getAvisos();
+	//$data['avisos'] = $this->mod_dashboard->getAvisos();
 	if(USUARIO_NIVEL == 0){
 		
 	}else{
