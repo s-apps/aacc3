@@ -22,7 +22,7 @@
     
     <div class="card mt-3">
         <div class="card-header p-2">Avisos</div>
-        <div class="card-body p-2">
+        <div class="card-body p-3">
           {% if constant('USUARIO_NIVEL') == 0 %}
           <div id="toolbar">
 	          <button class="btn btn-secondary btn-sm" id="btn-adicionar-aviso"><i class="fas fa-plus-circle"></i> Adicionar</button>

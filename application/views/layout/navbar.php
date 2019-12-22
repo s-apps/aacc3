@@ -8,7 +8,7 @@
 <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            <a class="nav-link" href="{{ constant('BASE_URL') }}dashboard"><i class="fas fa-home"></i> Dashboard</a>
+            <a class="nav-link dashboard" href="{{ constant('BASE_URL') }}dashboard" data-nivel="{{ constant('USUARIO_NIVEL') }}"><i class="fas fa-home"></i> Dashboard</a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle{{ disabled }}" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cadastros</a>

@@ -1,6 +1,7 @@
 var $table = $("#lista-avisos");
 
 $(document).ready(function(){
+    var nivel = $(".dashboard").data("nivel");
     $table.bootstrapTable({
         url: base_url + "dashboard/getAvisos",
         queryParamsType: "limit",
@@ -20,7 +21,7 @@ $(document).ready(function(){
         classes: "table table-bordered table-sm table-hover",
         toolbar: "#toolbar",
         columns: [
-            { field: "selecionado", checkbox: true },
+            { field: "selecionado", checkbox: true, align: "center", visible: (parseInt(nivel) == 0) ? true : false },
             { field: "data", title: "Data", sortable: true },
             { field: "titulo", title: "Título", sortable: true },
             { field: "aviso", title: "Aviso", sortable: true }
