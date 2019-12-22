@@ -14,16 +14,16 @@ class Dashboard extends CI_Controller {
     }    
 
     public function index(){
-	//$data['avisos'] = $this->mod_dashboard->getAvisos();
-	if(USUARIO_NIVEL == 0){
-		$data['limite_atividades'] = $this->mod_dashboard->getLimiteAtividades();
-	}else{
+    	if(USUARIO_NIVEL == 0){
+		    $data['limite_atividades'] = $this->mod_dashboard->getLimiteAtividades();
+	    }else{
 	      	//get horas realizadas
 		//get horas a realizar
 		//get limite de horas total a cumprir
-		//get quantidade de atividades aguardando validação
-	}
-        $this->load->view('dashboard', $data);
+        //get quantidade de atividades aguardando validação
+            $data = array();
+	    }
+            $this->load->view('dashboard', $data);
     }
 
     public function getAvisos(){
@@ -39,13 +39,35 @@ class Dashboard extends CI_Controller {
     }	
 
     public function salvarAviso(){
-        $aviso = [
-            'data' => viewParaMysql($this->input->post('data_aviso')),
-            'titulo' => $this->input->post('titulo'),
-            'aviso' => $this->input->post('aviso')
-        ];
-        $data['erro'] = $this->mod_dashboard->salvarAviso($aviso);
+        if(!USUARIO_NIVEL == 0){
+            $data['erro'] = 'Acesso negado';
+            echo json_encode($data);
+        }else{
+            $aviso = [
+                'aviso_id' => $this->input->post('aviso_id'),
+                'data' => viewParaMysql($this->input->post('data_aviso')),
+                'titulo' => $this->input->post('titulo'),
+                'aviso' => $this->input->post('aviso'),
+                'acao' => $this->input->post('acao')
+            ];
+            $data['erro'] = $this->mod_dashboard->salvarAviso($aviso);
+            echo json_encode($data);
+        }
+    }
+
+    public function getAvisoById($aviso_id){
+        $data['aviso'] = $this->mod_dashboard->getAvisoById($aviso_id);
+        $data['aviso']['data'] = mysqlParaView($data['aviso']['data']);
         echo json_encode($data);
     }
 
+    public function updateLimiteAtividades(){
+        if(!USUARIO_NIVEL == 0){
+            $data['erro'] = 'Acesso negado';
+        }else{
+            $limite_atividades = $this->input->post('limite_atividades');
+            $data['erro'] = $this->mod_dashboard->updateLimiteAtividades($limite_atividades);
+            echo json_encode($data);
+        }
+    }
 }

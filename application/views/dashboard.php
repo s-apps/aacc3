@@ -7,17 +7,19 @@
   <div class="card-body">
     <h5 class="card-title"><i class="fas fa-home"></i> Dashboard</h5>
     <hr>
+    {% if constant('USUARIO_NIVEL') == 0 %}
     <div class="card">
         <div class="card-header p-2">Configurações</div>
         <div class="card-body p-2">
-          <form class="form-inline">
+          <form class="form-inline" id="frmLimite" name="frmLimite">
             <label for="limite_atividades" class="my-1 mr-2">Limite de horas das atividades</label>
             <input type="text" class="form-control form-control-sm text-center" id="limite_atividades" name="limite_atividades" style="width:5rem;" value="{{ limite_atividades }}">
             <button type="submit" class="btn btn-secondary btn-sm ml-2"><i class="fas fa-save"></i> Salvar</button>
           </form>
         </div>
     </div>     
-
+    {% endif %}
+    
     <div class="card mt-3">
         <div class="card-header p-2">Avisos</div>
         <div class="card-body p-2">
@@ -53,20 +55,17 @@
               <div class="input-group date" id="datetimepicker-data_aviso" data-target-input="nearest">
                 <input type="text" class="form-control form-control-sm datetimepicker-input" id="data_aviso" data-target="#datetimepicker-data_aviso"/>
                 <div class="input-group-append" data-target="#datetimepicker-data_aviso" data-toggle="datetimepicker">
-                  <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+                  <div class="input-group-text bg-secondary text-white border border-secondary"><i class="far fa-calendar-alt"></i></div>
                 </div>
               </div>
-              <span class="span-invalido data_aviso-feed"></span>
           </div>
           <div class="form-group">
             <label for="titulo">Título</label>
             <input type="text" class="form-control form-control-sm" id="titulo" name="titulo" placeholder="Informe o título" value="">
-            <div class="invalid-feedback">Por favor, informe o título.</div>
           </div>
           <div class="form-group">
             <label for="aviso">Aviso</label>
             <textarea class="form-control form-control-sm" rows="3" placeholder="Informe o aviso" id="aviso" name="aviso"></textarea>
-            <div class="invalid-feedback">Por favor, informe o aviso.</div>
           </div>   
       </div>
       <div class="modal-footer">

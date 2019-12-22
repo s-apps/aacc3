@@ -15,7 +15,7 @@
                     <div class="input-group date" id="dataatividade" data-target-input="nearest">
                         <input type="text" class="form-control form-control-sm datetimepicker-input" data-target="#dataatividade" id="data_atividade" name="data_atividade" value="{% if acao == 'editando' and atividade.data is defined %}{{ atividade.data }}{% endif %}"/>
                         <div class="input-group-append" data-target="#dataatividade" data-toggle="datetimepicker">
-                            <div class="input-group-text bg-secondary text-white border border-secondary"><i class="fa fa-calendar"></i></div>
+                            <div class="input-group-text bg-secondary text-white border border-secondary"><i class="fa fa-calendar-alt"></i></div>
                         </div>
                     </div>                    
                 </div>
