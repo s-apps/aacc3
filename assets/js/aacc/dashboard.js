@@ -15,8 +15,8 @@ $(document).ready(function(){
         search: false,
         sortName: "data",
         sortOrder: "desc",
-        pageList: [5, 10, 15, 20],
-        pageSize: 5,
+        pageList: [10, 25, 50, 100],
+        pageSize: 10,
         theadClasses: "thead-light",
         classes: "table table-bordered table-sm table-hover",
         toolbar: "#toolbar",
@@ -58,6 +58,29 @@ $("#btn-adicionar-aviso").on("click", function(){
     $("#acao").val("adicionar");
     $("#formulario-avisos").modal("show");
 });
+
+$("#btn-excluir-aviso").on("click", function(){
+    exibirMensagemDeConfirmacao("Confirmação!", "Deseja realmente excluir os registros selecionados?");
+});
+
+function excluir(){
+    var aviso_ids = getIdSelections();
+    $.post({
+        url: base_url + "dashboard/excluirAviso",
+        dataType: "JSON",
+        data: { aviso_ids: aviso_ids }
+    })
+    .done(function(data){
+        if(data.sucesso){
+            $table.bootstrapTable("remove", {
+                field: "aviso_id",
+                values: aviso_ids
+            });
+            $table.bootstrapTable("refresh", { silent: true });
+            $("#btn-editar-aviso, #btn-excluir-aviso").prop("disabled", true);
+        }
+    });
+}
 
 $("#btn-editar-aviso").on("click", function(){
     var ids = getIdSelections();
@@ -185,5 +208,28 @@ function exibirMensagem(titulo, mensagem){
                 instance.hide({ transitionOut: "fadeOut" }, toast, "button");
             }, false], // true to focus
         ]
+    });        
+}
+
+function exibirMensagemDeConfirmacao(titulo, mensagem){
+    iziToast.show({
+        title: titulo,
+        message: mensagem,
+        position: "center",
+        timeout: 0,
+        animateInside: false,
+        buttons: [
+            ["<button><b>Excluir</b></button>", function (instance, toast, button, e, inputs) {
+                instance.hide({ transitionOut: "fadeOut" }, toast, "buttonExcluir");
+            }, false], // true to focus
+            ["<button><b>Cancelar</b></button>", function (instance, toast, button, e, inputs) {
+                instance.hide({ transitionOut: "fadeOut" }, toast, "buttonCancelar");
+            }, false] // true to focus
+        ],
+        onClosing: function(instance, toast, closedBy){
+            if(closedBy == "buttonExcluir"){
+                excluir();
+            }
+        }       
     });        
 }

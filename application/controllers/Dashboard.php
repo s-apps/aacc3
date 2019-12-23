@@ -70,4 +70,11 @@ class Dashboard extends CI_Controller {
             echo json_encode($data);
         }
     }
+
+    public function excluirAviso(){
+        $aviso_ids = $this->input->post('aviso_ids');
+        $data['sucesso'] = $this->mod_dashboard->excluir($aviso_ids);
+        echo json_encode($data);
+    }
+
 }

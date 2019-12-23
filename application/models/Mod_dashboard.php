@@ -63,4 +63,17 @@ class Mod_dashboard extends CI_Model {
        }
    }
 
+    public function excluir($aviso_ids){
+        $this->db->where_in('aviso_id', $aviso_ids);
+        $avisos = $this->db->get('aviso')->result_array();
+        $this->db->trans_start();
+        foreach($avisos as $aviso){
+            $this->db->where('aviso_id', $aviso['aviso_id']);
+            $this->db->delete('aviso');
+        }
+        $this->db->trans_complete();
+        return $this->db->trans_status();
+    }
+
+
 }

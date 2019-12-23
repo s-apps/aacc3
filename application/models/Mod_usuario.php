@@ -77,8 +77,10 @@ class Mod_usuario extends CI_Model {
             unset($usuario['acao']);
             unset($usuario['curso_ids']);
             unset($usuario['usuario_ra']);
-            if(isset($usuario['senha'])){
+            if(!empty($usuario['senha'])){
                 $usuario['senha'] = password_hash($usuario['senha'], PASSWORD_DEFAULT);
+            }else{
+                unset($usuario['senha']);
             }
             $this->db->where('usuario_id', $usuario['usuario_id']);
             $this->db->update('usuario', $usuario);
