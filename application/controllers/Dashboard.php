@@ -41,7 +41,6 @@ class Dashboard extends CI_Controller {
 	public function salvarAviso(){
 		if(!USUARIO_NIVEL == 0){
 			$data['erro'] = 'Acesso negado';
-			echo json_encode($data);
 		}else{
 			$aviso = [
 				'aviso_id' => $this->input->post('aviso_id'),
@@ -51,8 +50,8 @@ class Dashboard extends CI_Controller {
 				'acao' => $this->input->post('acao')
 			];
 			$data['erro'] = $this->mod_dashboard->salvarAviso($aviso);
-			echo json_encode($data);
 		}
+		echo json_encode($data);
 	}
 
 	public function getAvisoById($aviso_id){
@@ -67,8 +66,8 @@ class Dashboard extends CI_Controller {
 		}else{
 			$limite_atividades = $this->input->post('limite_atividades');
 			$data['erro'] = $this->mod_dashboard->atualizarLimiteAtividades($limite_atividades);
-			echo json_encode($data);
 		}
+		echo json_encode($data);
 	}
 
 	public function excluirAviso(){
