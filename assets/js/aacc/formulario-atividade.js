@@ -47,11 +47,11 @@ $(document).ready(function(){
     $("#horasinicio").datetimepicker({
         format: "HH:mm",
         allowInputToggle: true
-    });     
+    });
     $("#horastermino").datetimepicker({
         format: "HH:mm",
         allowInputToggle: true
-    });    
+    });
 });
 
 $categoria_id.on("change", function(){
@@ -139,7 +139,7 @@ $frmAtividade.on("submit", function(event){
                 if(data.erro.length === 0){
                     window.location.href = base_url + "atividade";
                 }else{
-                    exibirMensagemDeErro("Atenção!", data.erro);
+                    exibirMensagem("Atenção!", data.erro);
                 }
             }
         });
@@ -153,45 +153,45 @@ function camposValidos(atividade){
     var horasInicioValida = moment(atividade.horas_inicio, "HH:mm", true).isValid();
     var horasTerminoValida = moment(atividade.horas_termino, "HH:mm", true).isValid();
     if(atividade.data_atividade.length === 0 || ! dataAtividadeValida){
-        exibirMensagemDeErro("Atenção!", "Informe a Data corretamente");
+        exibirMensagem("Atenção!", "Informe a Data corretamente");
         $("#data_atividade").focus();
         return false;
     }else if(atividade.horas_inicio.length === 0 || ! horasInicioValida){
-        exibirMensagemDeErro("Atenção!", "Informe a Horas início corretamente");
+        exibirMensagem("Atenção!", "Informe a Horas início corretamente");
         $("#horas_inicio").focus();
         return false;
     }else if(atividade.horas_termino.length === 0 || ! horasTerminoValida){
         $("#horas_termino").focus();
-        exibirMensagemDeErro("Atenção!", "Informe a Horas terḿino corretamente");
+        exibirMensagem("Atenção!", "Informe a Horas terḿino corretamente");
         return false;
     }else if(horasInicioMaiorHorasTermino(atividade.horas_inicio, atividade.horas_termino)){
-        exibirMensagemDeErro("Atenção!", "Horas de início não pode ser menor ou igual Horas término");
+        exibirMensagem("Atenção!", "Horas de início não pode ser menor ou igual Horas término");
         return false;
     }else if(atividade.usuario_ra.length === 0){
-        exibirMensagemDeErro("Atenção!", "Informe o Aluno");
+        exibirMensagem("Atenção!", "Informe o Aluno");
         return false;
     }else if(atividade.atividade.length === 0){
-        exibirMensagemDeErro("Atenção!", "Informe a Atividade");
+        exibirMensagem("Atenção!", "Informe a Atividade");
         $("#atividade").focus();
         return false;
     }else if(atividade.categoria_id.length === 0){
-        exibirMensagemDeErro("Atenção!", "Informe a Categoria");
+        exibirMensagem("Atenção!", "Informe a Categoria");
         $("#categoria_id").select2("open");
         return false;
     }else if(atividade.modalidade_id.length === 0){
-        exibirMensagemDeErro("Atenção!", "Informe a Modalidade");
+        exibirMensagem("Atenção!", "Informe a Modalidade");
         $("#modalidade_id").select2("open");
         return false;
     }else if(atividade.comprovante_id.length === 0){
-        exibirMensagemDeErro("Atenção!", "Informe o Comprovante");
+        exibirMensagem("Atenção!", "Informe o Comprovante");
         $("#comprovante_id").select2("open");
         return false;
     }else if(atividade.validacao.length === 0){
-        exibirMensagemDeErro("Atenção!", "Informe a Validação");
+        exibirMensagem("Atenção!", "Informe a Validação");
         $("#validacao").focus();
         return false;
     }else if(atividade.imagem_comprovante.length === 0 && atividade.acao == 'adicionando'){
-        exibirMensagemDeErro("Atenção!", "Informe a Imagem do comprovante");
+        exibirMensagem("Atenção!", "Informe a Imagem do comprovante");
         $("#imagem_comprovante").focus();
         return false;
     }else{
@@ -205,19 +205,4 @@ function horasInicioMaiorHorasTermino(horas_inicio, horas_termino){
     var horasInicio = (split1[0] * 60) + parseInt(split1[1]);
     var horasTermino = (split2[0] * 60) + parseInt(split2[1]);
     return horasInicio >= horasTermino;
-}
-
-function exibirMensagemDeErro(titulo, mensagem){
-    iziToast.show({
-        title: titulo,
-        message: mensagem,
-        position: "center",
-        timeout: 0,
-        animateInside: false,
-        buttons: [
-            ["<button><b>OK</b></button>", function (instance, toast, button, e, inputs) {
-                instance.hide({ transitionOut: "fadeOut" }, toast, "button");
-            }, false], // true to focus
-        ]
-    });        
 }

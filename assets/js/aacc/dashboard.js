@@ -41,7 +41,7 @@ $(document).ready(function(){
         format: "L",
         date: moment(),
         allowInputToggle: true
-    });    
+    });
 });
 
 function queryParams(params) {
@@ -95,7 +95,7 @@ $("#btn-editar-aviso").on("click", function(){
         $("#titulo").val(data.aviso.titulo);
         $("#aviso").val(data.aviso.aviso);
         $("#titulo").focus();
-        $("#formulario-avisos").modal("show");        
+        $("#formulario-avisos").modal("show");
     });
 });
 
@@ -165,7 +165,7 @@ $("#formulario-avisos").on("submit", function(event){
                     exibirMensagem("Atenção!", data.erro);
                 }
             }
-        });        
+        });
     }else{
 
     }
@@ -195,41 +195,3 @@ $table.on("check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.tab
     $("#btn-editar-aviso").prop("disabled", (tamanho == 0 || tamanho > 1) ? true : false);
     $("#btn-excluir-aviso").prop("disabled",  tamanho == 0);
 });
-
-function exibirMensagem(titulo, mensagem){
-    iziToast.show({
-        title: titulo,
-        message: mensagem,
-        position: "center",
-        timeout: 0,
-        animateInside: false,
-        buttons: [
-            ["<button><b>OK</b></button>", function (instance, toast, button, e, inputs) {
-                instance.hide({ transitionOut: "fadeOut" }, toast, "button");
-            }, false], // true to focus
-        ]
-    });        
-}
-
-function exibirMensagemDeConfirmacao(titulo, mensagem){
-    iziToast.show({
-        title: titulo,
-        message: mensagem,
-        position: "center",
-        timeout: 0,
-        animateInside: false,
-        buttons: [
-            ["<button><b>Excluir</b></button>", function (instance, toast, button, e, inputs) {
-                instance.hide({ transitionOut: "fadeOut" }, toast, "buttonExcluir");
-            }, false], // true to focus
-            ["<button><b>Cancelar</b></button>", function (instance, toast, button, e, inputs) {
-                instance.hide({ transitionOut: "fadeOut" }, toast, "buttonCancelar");
-            }, false] // true to focus
-        ],
-        onClosing: function(instance, toast, closedBy){
-            if(closedBy == "buttonExcluir"){
-                excluir();
-            }
-        }       
-    });        
-}

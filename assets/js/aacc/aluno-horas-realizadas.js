@@ -21,25 +21,10 @@ $("#usuario_id").on("select2:select", function (e) {
     .done(function(data){
       if(data.erro.length === 0){
         $table.bootstrapTable({
-	  
-        });       
+
+        });
       }else{
-        exibirMensagemDeErro("Atenção!", data.erro);
+        exibirMensagem("Atenção!", data.erro);
       }
     });
 });
-
-function exibirMensagemDeErro(titulo, mensagem){
-    iziToast.show({
-        title: titulo,
-        message: mensagem,
-        position: "center",
-        timeout: 0,
-        animateInside: false,
-        buttons: [
-            ["<button><b>OK</b></button>", function (instance, toast, button, e, inputs) {
-                instance.hide({ transitionOut: "fadeOut" }, toast, "button");
-            }, false], // true to focus
-        ]
-    });        
-}

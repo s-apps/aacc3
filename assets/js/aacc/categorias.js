@@ -5,11 +5,11 @@ $(document).ready(function(){
         url: base_url + "admin/categoria/lista",
         queryParamsType: "limit",
         queryParams: queryParams,
-        sidePagination: "server",   
+        sidePagination: "server",
         showToggle: false,
         pagination: true,
         trimOnSearch: false,
-        clickToSelect: true,             
+        clickToSelect: true,
         search: true,
         showRefresh: true,
         sortName: "categoria",
@@ -37,7 +37,7 @@ $(document).ready(function(){
         },
         formatLoadingMessage: function () {
             return "<span style='font-size: 0.85rem;margin: 5px;'>Carregando</span>";
-        }         
+        }
     });
     $("#btn-editar, #btn-excluir").prop("disabled", true);
     $("div.search input[type=text]").addClass("form-control-sm");
@@ -91,27 +91,4 @@ function getSelections() {
     return $.map($table.bootstrapTable("getSelections"), function (row) {
         return row.categoria_id;
     });
-}
-
-function exibirMensagemDeConfirmacao(titulo, mensagem){
-    iziToast.show({
-        title: titulo,
-        message: mensagem,
-        position: "center",
-        timeout: 0,
-        animateInside: false,
-        buttons: [
-            ["<button><b>Excluir</b></button>", function (instance, toast, button, e, inputs) {
-                instance.hide({ transitionOut: "fadeOut" }, toast, "buttonExcluir");
-            }, false], // true to focus
-            ["<button><b>Cancelar</b></button>", function (instance, toast, button, e, inputs) {
-                instance.hide({ transitionOut: "fadeOut" }, toast, "buttonCancelar");
-            }, false] // true to focus
-        ],
-        onClosing: function(instance, toast, closedBy){
-            if(closedBy == "buttonExcluir"){
-                excluir();
-            }
-        }       
-    });        
 }

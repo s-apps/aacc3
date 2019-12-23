@@ -4,7 +4,7 @@ $("#frmCurso").on("submit", function(event){
     var curso = $("#curso").val();
     var curso_id = $("#curso_id").val();
     if(curso.length === 0){
-        exibirMensagemDeErro("Atenção!", " Informe a curso");
+        exibirMensagem("Atenção!", " Informe a curso");
         $("#curso").focus();
     }else{
         $.post({
@@ -16,23 +16,8 @@ $("#frmCurso").on("submit", function(event){
             if(data.erro.length === 0){
                 window.location.href = base_url + "admin/curso"
             }else{
-                exibirMensagemDeErro("Atenção!", data.erro);
+                exibirMensagem("Atenção!", data.erro);
             }
         });
     }
 });
-
-function exibirMensagemDeErro(titulo, mensagem){
-    iziToast.show({
-        title: titulo,
-        message: mensagem,
-        position: "center",
-        timeout: 0,
-        animateInside: false,
-        buttons: [
-            ["<button><b>OK</b></button>", function (instance, toast, button, e, inputs) {
-                instance.hide({ transitionOut: "fadeOut" }, toast, "button");
-            }, false], // true to focus
-        ]
-    });        
-}

@@ -1,4 +1,4 @@
-$(function(){
+$(document).ready(function(){
     $("#curso_id").select2({
         placeholder: "Selecione os cursos",
         theme: "bootstrap",
@@ -35,41 +35,26 @@ $("#frmProfessor").on("submit", function(event){
                 if(data.erro.length === 0){
                     window.location.href = base_url + "admin/professor";
                 }else{
-                    exibirMensagemDeErro("Atenção!", data.erro);
+                    exibirMensagem("Atenção!", data.erro);
                 }
             }
         });
     }
 });
 
-function exibirMensagemDeErro(titulo, mensagem){
-    iziToast.show({
-        title: titulo,
-        message: mensagem,
-        position: "center",
-        timeout: 0,
-        animateInside: false,
-        buttons: [
-            ["<button><b>OK</b></button>", function (instance, toast, button, e, inputs) {
-                instance.hide({ transitionOut: "fadeOut" }, toast, "button");
-            }, false], // true to focus
-        ]
-    });        
-}
-
 function camposValidos(usuario){
     if(usuario.nome.length === 0){
-        exibirMensagemDeErro("Atenção!", "Informe o Nome completo");
-        $("#nome").focus(); 
-        return false;       
+        exibirMensagem("Atenção!", "Informe o Nome completo");
+        $("#nome").focus();
+        return false;
     }else if(usuario.email.length === 0){
-        exibirMensagemDeErro("Atenção!", "Informe o Email");
-        $("#email").focus(); 
-        return false;       
+        exibirMensagem("Atenção!", "Informe o Email");
+        $("#email").focus();
+        return false;
     }else if(usuario.senha.length === 0 && usuario.acao == 'adicionando'){
-        exibirMensagemDeErro("Atenção!", "Informe a Senha");
-        $("#senha").focus(); 
-        return false;       
+        exibirMensagem("Atenção!", "Informe a Senha");
+        $("#senha").focus();
+        return false;
     }else{
         return true;
     }
