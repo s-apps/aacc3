@@ -36,7 +36,6 @@ $(document).ready(function(){
             return "<span style='font-size: 0.85rem;margin: 5px;'>Carregando</span>";
         }
     });
-    $("#btn-editar, #btn-excluir").prop("disabled", true);
     $("#datetimepicker-data_aviso").datetimepicker({
         format: "L",
         date: moment(),

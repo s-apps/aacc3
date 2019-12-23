@@ -39,8 +39,6 @@ $(document).ready(function(){
             return "<span style='font-size: 0.85rem;margin: 5px;'>Carregando</span>";
         }
     });
-    $("#btn-editar, #btn-excluir").prop("disabled", true);
-    $("div.search input[type=text]").addClass("form-control-sm");
 });//document ready
 
 $("#btn-editar").on("click", function(){
