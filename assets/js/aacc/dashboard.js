@@ -113,7 +113,7 @@ $("#frmLimite").on("submit", function(event){
         return false;
     }else{
         $.post({
-            url: base_url + "dashboard/updateLimiteAtividades",
+            url: base_url + "dashboard/atualizarLimiteAtividades",
             dataType: "JSON",
             data: { limite_atividades: limite_atividades}
         })
