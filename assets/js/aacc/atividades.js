@@ -72,15 +72,8 @@ function excluir(){
     });
 }
 
-
 function getSelections() {
     return $.map($table.bootstrapTable("getSelections"), function (row) {
         return row.atividade_id;
     });
 }
-
-$table.on("check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table", function () {
-    var tamanho = $table.bootstrapTable("getSelections").length;
-    $("#btn-editar").prop("disabled", (tamanho == 0 || tamanho > 1) ? true : false);
-    $("#btn-excluir").prop("disabled",  tamanho == 0);
-});

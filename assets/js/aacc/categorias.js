@@ -39,8 +39,6 @@ $(document).ready(function(){
             return "<span style='font-size: 0.85rem;margin: 5px;'>Carregando</span>";
         }
     });
-    $("#btn-editar, #btn-excluir").prop("disabled", true);
-    $("div.search input[type=text]").addClass("form-control-sm");
 });//document ready
 
 $("#btn-editar").on("click", function(){
@@ -70,12 +68,6 @@ function excluir(){
         }
     });
 }
-
-$table.on("check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table", function () {
-    var tamanho = $table.bootstrapTable("getSelections").length;
-    $("#btn-editar").prop("disabled", (tamanho == 0 || tamanho > 1) ? true : false);
-    $("#btn-excluir").prop("disabled",  tamanho == 0);
-});
 
 function getSelections() {
     return $.map($table.bootstrapTable("getSelections"), function (row) {

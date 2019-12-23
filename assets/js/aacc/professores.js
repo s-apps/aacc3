@@ -44,12 +44,6 @@ $(document).ready(function(){
     $("div.search input[type=text]").addClass("form-control-sm");
 });//document ready
 
-$table.on("check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table", function () {
-    var tamanho = $table.bootstrapTable("getSelections").length;
-    $("#btn-editar").prop("disabled", (tamanho == 0 || tamanho > 1) ? true : false);
-    $("#btn-excluir").prop("disabled",  tamanho == 0);
-});
-
 $("#btn-editar").on("click", function(){
     var usuario_id = getSelections();
     window.location.href = base_url + "admin/professor/editar/" + usuario_id[0];

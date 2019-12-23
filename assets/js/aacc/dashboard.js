@@ -36,7 +36,7 @@ $(document).ready(function(){
             return "<span style='font-size: 0.85rem;margin: 5px;'>Carregando</span>";
         }
     });
-    $("#btn-editar-aviso, #btn-excluir-aviso").prop("disabled", true);
+    $("#btn-editar, #btn-excluir").prop("disabled", true);
     $("#datetimepicker-data_aviso").datetimepicker({
         format: "L",
         date: moment(),
@@ -49,8 +49,25 @@ $("#btn-adicionar-aviso").on("click", function(){
     $("#formulario-avisos").modal("show");
 });
 
-$("#btn-excluir-aviso").on("click", function(){
+$("#btn-excluir").on("click", function(){
     exibirMensagemDeConfirmacao("Confirmação!", "Deseja realmente excluir os registros selecionados?");
+});
+
+$("#btn-editar").on("click", function(){
+    var ids = getSelections();
+    $.get({
+        url: base_url + "dashboard/getAvisoById/" + ids[0],
+        dataType: "JSON"
+    })
+    .done(function(data){
+        $("#acao").val("editar");
+        $("#aviso_id").val(data.aviso.aviso_id);
+        $("#data_aviso").val(data.aviso.data);
+        $("#titulo").val(data.aviso.titulo);
+        $("#aviso").val(data.aviso.aviso);
+        $("#titulo").focus();
+        $("#formulario-avisos").modal("show");
+    });
 });
 
 function excluir(){
@@ -71,23 +88,6 @@ function excluir(){
         }
     });
 }
-
-$("#btn-editar-aviso").on("click", function(){
-    var ids = getSelections();
-    $.get({
-        url: base_url + "dashboard/getAvisoById/" + ids[0],
-        dataType: "JSON"
-    })
-    .done(function(data){
-        $("#acao").val("editar");
-        $("#aviso_id").val(data.aviso.aviso_id);
-        $("#data_aviso").val(data.aviso.data);
-        $("#titulo").val(data.aviso.titulo);
-        $("#aviso").val(data.aviso.aviso);
-        $("#titulo").focus();
-        $("#formulario-avisos").modal("show");
-    });
-});
 
 function getSelections() {
     return $.map($table.bootstrapTable("getSelections"), function (row) {
@@ -179,9 +179,3 @@ function camposValidos(aviso){
         return true;
     }
 }
-
-$table.on("check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table", function () {
-    var tamanho = $table.bootstrapTable("getSelections").length;
-    $("#btn-editar-aviso").prop("disabled", (tamanho == 0 || tamanho > 1) ? true : false);
-    $("#btn-excluir-aviso").prop("disabled",  tamanho == 0);
-});

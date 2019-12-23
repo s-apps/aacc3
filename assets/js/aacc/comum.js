@@ -1,5 +1,10 @@
 var base_url = "http://localhost:8000/";
 
+$(document).ready(function(){
+  $("#btn-editar, #btn-excluir").prop("disabled", true);
+  $("div.search input[type=text]").addClass("form-control-sm");
+});
+
 function queryParams(params) {
     return {
         limit: params.limit,
@@ -9,6 +14,12 @@ function queryParams(params) {
         search: params.search
     };
 }
+
+$table.on("check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table", function () {
+    var tamanho = $table.bootstrapTable("getSelections").length;
+    $("#btn-editar").prop("disabled", (tamanho == 0 || tamanho > 1) ? true : false);
+    $("#btn-excluir").prop("disabled",  tamanho == 0);
+});
 
 function exibirMensagem(titulo, mensagem){
     iziToast.show({
