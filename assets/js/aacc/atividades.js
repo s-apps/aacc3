@@ -44,16 +44,6 @@ $(document).ready(function(){
     $("div.search input[type=text]").addClass("form-control-sm");
 });
 
-function queryParams(params) {
-    return {
-        limit: params.limit,
-        offset: params.offset,
-        sort: params.sort,
-        order: params.order,
-        search: params.search
-    };
-}
-
 $("#btn-editar").on("click", function(){
     var atividade_id = getSelections();
     window.location.href = base_url + "atividade/editar/" + atividade_id[0];

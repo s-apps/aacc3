@@ -44,16 +44,6 @@ $(document).ready(function(){
     $("div.search input[type=text]").addClass("form-control-sm");
 });//document ready
 
-function queryParams(params) {
-    return {
-        limit: params.limit,
-        offset: params.offset,
-        sort: params.sort,
-        order: params.order,
-        search: params.search
-    };
-}
-
 $table.on("check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table", function () {
     var tamanho = $table.bootstrapTable("getSelections").length;
     $("#btn-editar").prop("disabled", (tamanho == 0 || tamanho > 1) ? true : false);

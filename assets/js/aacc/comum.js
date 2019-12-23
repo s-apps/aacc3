@@ -1,5 +1,15 @@
 var base_url = "http://localhost:8000/";
 
+function queryParams(params) {
+    return {
+        limit: params.limit,
+        offset: params.offset,
+        sort: params.sort,
+        order: params.order,
+        search: params.search
+    };
+}
+
 function exibirMensagem(titulo, mensagem){
     iziToast.show({
         title: titulo,

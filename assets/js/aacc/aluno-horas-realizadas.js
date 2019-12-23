@@ -1,4 +1,4 @@
-$(function(){
+$(document).ready(function(){
     $("#usuario_id").select2({
         placeholder: "Selecione o aluno",
         theme: "bootstrap",

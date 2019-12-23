@@ -44,16 +44,6 @@ $(document).ready(function(){
     });
 });
 
-function queryParams(params) {
-    return {
-        limit: params.limit,
-        offset: params.offset,
-        sort: params.sort,
-        order: params.order,
-        search: params.search
-    };
-}
-
 $("#btn-adicionar-aviso").on("click", function(){
     $("#acao").val("adicionar");
     $("#formulario-avisos").modal("show");
@@ -64,7 +54,7 @@ $("#btn-excluir-aviso").on("click", function(){
 });
 
 function excluir(){
-    var aviso_ids = getIdSelections();
+    var aviso_ids = getSelections();
     $.post({
         url: base_url + "dashboard/excluirAviso",
         dataType: "JSON",
@@ -83,7 +73,7 @@ function excluir(){
 }
 
 $("#btn-editar-aviso").on("click", function(){
-    var ids = getIdSelections();
+    var ids = getSelections();
     $.get({
         url: base_url + "dashboard/getAvisoById/" + ids[0],
         dataType: "JSON"
@@ -99,7 +89,7 @@ $("#btn-editar-aviso").on("click", function(){
     });
 });
 
-function getIdSelections() {
+function getSelections() {
     return $.map($table.bootstrapTable("getSelections"), function (row) {
       return row.aviso_id
     });

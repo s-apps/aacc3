@@ -43,16 +43,6 @@ $(document).ready(function(){
     $("div.search input[type=text]").addClass("form-control-sm");
 });//document ready
 
-function queryParams(params) {
-    return {
-        limit: params.limit,
-        offset: params.offset,
-        sort: params.sort,
-        order: params.order,
-        search: params.search
-    };
-}
-
 $("#btn-editar").on("click", function(){
     var categoria_id = getSelections();
     window.location.href = base_url + "admin/categoria/editar/" + categoria_id[0];

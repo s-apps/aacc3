@@ -43,16 +43,6 @@ $(document).ready(function(){
     $("div.search input[type=text]").addClass("form-control-sm");
 });//document ready
 
-function queryParams(params) {
-    return {
-        limit: params.limit,
-        offset: params.offset,
-        sort: params.sort,
-        order: params.order,
-        search: params.search
-    };
-}
-
 $("#btn-editar").on("click", function(){
     var comprovante_id = getSelections();
     window.location.href = base_url + "admin/comprovante/editar/" + comprovante_id[0];
