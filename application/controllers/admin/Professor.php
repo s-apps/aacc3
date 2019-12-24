@@ -53,7 +53,7 @@ class Professor extends CI_Controller {
             'usuario_id' => $this->input->post('usuario_id'),
             'email' => $this->input->post('email'),
             'senha' => $this->input->post('senha'),
-            'curso_ids' => explode(',', $this->input->post('curso_ids')),
+            'curso_ids' => $this->input->post('curso_ids'),
             'nivel' => 0
         );
         $data['erro'] = $this->mod_usuario->salvar($usuario);

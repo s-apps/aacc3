@@ -1,12 +1,5 @@
 $(document).ready(function(){
-    $("#curso_id").select2({
-        placeholder: "Selecione os cursos",
-        theme: "bootstrap",
-        language: { noResults: function () {
-            return "Nenhum resultado encontrado";
-          }
-        }
-    });
+    $("#curso_id").select2();
 });
 
 $("#frmProfessor").on("submit", function(event){

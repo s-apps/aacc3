@@ -29,7 +29,6 @@
                 <div class="form-group col-md-6">
                     <label for="curso_id">Cursos</label>
                     <select class="custom-select custom-select-sm" id="curso_id" name="curso_ids[]" multiple="multiple">
-                        <option></option>
                         {% for curso in cursos %}
                         <option value="{{ curso.curso_id }}">{{ curso.curso }}</option>
                         {% endfor %}
