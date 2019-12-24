@@ -56,5 +56,51 @@ $("#frmModalidade").on("submit", function(event){
         categoria_id: $("#categoria_id").val(),
         comprovante_id: $("#comprovante_id").val()
     };
-    console.log(modalidade);
-})
+    if(camposValidos(modalidade)){
+        var data = new FormData(this);
+        $.each(modalidade, function(key, campo){
+            data.append(key, campo);
+        });
+        $.post({
+            url: base_url + "admin/modalidade/salvar",
+            dataType: "JSON",
+            contentType: false,
+            cache: false,
+            processData: false,
+            data: data,
+            success: function(data){
+                if(data.erro.length === 0){
+                    window.location.href = base_url + "admin/modalidade";
+                }else{
+                    exibirMensagem("Atenção!", data.erro);
+                }
+            }
+        });
+    }
+});
+
+function camposValidos(modalidade){
+    if(modalidade.modalidade.length === 0){
+        exibirMensagem("Atenção!", "Informe a Modalidade");
+        $("#modalidade").focus();
+        return false;
+    }else if(modalidade.min_horas.length === 0){
+        exibirMensagem("Atenção!", "Informe o Mínimo de horas (duração)");
+        $("#min_horas").focus();
+        return false;
+    }else if(modalidade.max_horas.length === 0){
+        exibirMensagem("Atenção!", "Informe o Máximo de horas (limite)");
+        $("#max_horas").focus();
+        return false;
+    }else if(modalidade.categoria_id.length === 0){
+        exibirMensagem("Atenção!", "Informe a Categoria");
+        $("#categoria_id").focus();
+        return false;
+    }else if(modalidade.comprovante_id.length === 0){
+        exibirMensagem("Atenção!", "Informe o Comprovante");
+        $("#comprovante_id").focus();
+        return false;
+    }else{
+        return true;
+    }
+}

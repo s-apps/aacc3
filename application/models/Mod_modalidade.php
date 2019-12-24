@@ -47,5 +47,50 @@ class Mod_modalidade extends CI_Model {
         $this->db->trans_complete();
         return $this->db->trans_status();
     }
+
+    public function salvar($modalidade){
+        $acao = $modalidade['acao'];
+        $modalidade_id = $modalidade['modalidade_id'];
+        unset($modalidade['acao']);
+        unset($modalidade['modalidade_id']);
+        if($acao == 'adicionando'){
+            $this->db->where('modalidade', $modalidade['modalidade']);
+            $num_rows = $this->db->count_all_results('modalidade');
+            if($num_rows == 0){
+                unset($modalidade['modalidade_id']);
+                if($this->db->insert('modalidade', $modalidade)){
+                    return '';
+                }else{
+                    return 'Ocorreu um erro inserindo na tabela modalidade';
+                }
+            }else{
+                return 'A modalidade <strong>' . $modalidade['modalidade'] . '</strong> já existe!';
+            }
+        }else{
+            $this->db->where('modalidade_id', $modalidade_id);
+            $resultado = $this->db->get('modalidade')->row_array();
+            if($resultado['modalidade_id'] == $modalidade_id && $resultado['modalidade'] == $modalidade['modalidade']){
+                $this->db->where('modalidade_id', $modalidade_id);
+                if($this->db->update('modalidade', $modalidade)){
+                    return '';
+                }else{
+                    return 'Ocorreu um erro atualizando a tabela modalidade';
+                }
+            }else{
+                $this->db->where('modalidade', $modalidade['modalidade']);
+                $num_rows = $this->db->count_all_results('modalidade');
+                if($num_rows == 0){
+                    $this->db->where('modalidade_id', $modalidade_id);
+                    if($this->db->update('modalidade', $modalidade)){
+                        return '';
+                    }else{
+                        return 'Ocorreu um erro atualizando a tabela modalidade';
+                    }    
+                }else{
+                    return 'A modalidade <strong>' . $modalidade['modalidade'] . '</strong> já existe!';
+                }
+            }
+        }
+    }
     
 }

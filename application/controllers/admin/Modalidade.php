@@ -49,6 +49,20 @@ class Modalidade extends CI_Controller {
         $this->load->view('admin/formulario-modalidade', $data);
     }
 
+    public function salvar(){
+        $modalidade = array(
+            'acao' => $this->input->post('acao'),
+            'modalidade_id' => $this->input->post('modalidade_id'),
+            'modalidade' => $this->input->post('modalidade'),
+            'min_horas' => $this->input->post('min_horas'),
+            'max_horas' => $this->input->post('max_horas'),
+            'categoria_id' => $this->input->post('categoria_id'),
+            'comprovante_id' => $this->input->post('comprovante_id')
+        );
+        $data['erro'] = $this->mod_modalidade->salvar($modalidade);
+        echo json_encode($data);
+    }
+
     public function excluir(){
         $modalidade_ids = $this->input->post('modalidade_ids');
         $data['sucesso'] = $this->mod_modalidade->excluir($modalidade_ids);
