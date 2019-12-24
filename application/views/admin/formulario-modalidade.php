@@ -17,7 +17,7 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-3">
-                    <label for="min_horas">Mínimo de horas</label>
+                    <label for="min_horas">Mínimo de horas (duração)</label>
                     <div class="input-group date" id="minhoras" data-target-input="nearest">
                         <input type="text" class="form-control form-control-sm datetimepicker-input" id="min_horas" name="min_horas" data-target="#minhoras" value="{% if acao == 'editando' and modalidade.min_horas is defined%}{{ modalidade.min_horas }}{% endif %}"/>
                         <div class="input-group-append" data-target="#minhoras" data-toggle="datetimepicker">
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="max_horas">Máximo de horas</label>
+                    <label for="max_horas">Máximo de horas (limite)</label>
                     <div class="input-group date" id="maxhoras" data-target-input="nearest">
                         <input type="text" class="form-control form-control-sm datetimepicker-input" id="max_horas" name="max_horas" data-target="#maxhoras" value="{% if acao == 'editando' and modalidade.max_horas is defined%}{{ modalidade.max_horas }}{% endif %}"/>
                         <div class="input-group-append" data-target="#maxhoras" data-toggle="datetimepicker">
@@ -34,15 +34,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- <div class="form-group col-md-3">
-                    <label for="min_horas">Mínimo de horas</label>
-                    <input type="text" id="min_horas" name="min_horas" class="form-control form-control-sm">
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="max_horas">Máximo de horas</label>
-                    <input type="text" id="max_horas" name="max_horas" class="form-control form-control-sm">
-                </div> -->
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">

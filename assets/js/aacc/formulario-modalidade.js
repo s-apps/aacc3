@@ -44,3 +44,17 @@ $(document).ready(function(){
         });
     }
 }); //document ready
+
+$("#frmModalidade").on("submit", function(event){
+    event.preventDefault();
+    var modalidade = {
+        acao: $("#acao").val(),
+        modalidade_id: $("#modalidade_id").val(),
+        modalidade: $("#modalidade").val(),
+        min_horas: $("#min_horas").val(),
+        max_horas: $("#max_horas").val(),
+        categoria_id: $("#categoria_id").val(),
+        comprovante_id: $("#comprovante_id").val()
+    };
+    console.log(modalidade);
+})

@@ -13,7 +13,7 @@
       <button class="btn btn-secondary btn-sm" id="btn-editar"><i class="fas fa-edit"></i> Editar</button>
       <button class="btn btn-danger btn-sm" id="btn-excluir"><i class="fas fa-minus-circle"></i> Excluir</button>        
     </div>
-    <table id="lista-alunos"></table>
+    <table id="listagem"></table>
   </div>
 </div>
 {% endblock %}
