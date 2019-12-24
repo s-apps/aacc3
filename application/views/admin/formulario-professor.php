@@ -48,4 +48,5 @@
 {% block scripts %}
   {{ parent() }}
   <script src="{{ constant('BASE_URL') }}assets/js/aacc/formulario-professor.js"></script>
+  <script src="{{ constant('BASE_URL') }}assets/js/aacc/comum.js"></script>	
 {% endblock %}

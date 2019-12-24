@@ -43,7 +43,7 @@ $(document).ready(function(){
     });
 });
 
-$("#btn-adicionar-aviso").on("click", function(){
+$("#btn-adicionar").on("click", function(){
     $("#acao").val("adicionar");
     $("#formulario-avisos").modal("show");
 });

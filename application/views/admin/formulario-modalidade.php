@@ -86,4 +86,5 @@
 {% block scripts %}
   {{ parent() }}
   <script src="{{ constant('BASE_URL') }}assets/js/aacc/formulario-modalidade.js"></script>
+  <script src="{{ constant('BASE_URL') }}assets/js/aacc/comum.js"></script>	
 {% endblock %}

@@ -24,4 +24,5 @@
 {% block scripts %}
   {{ parent() }}
   <script src="{{ constant('BASE_URL') }}assets/js/aacc/aluno-horas-realizadas.js"></script>
+  <script src="{{ constant('BASE_URL') }}assets/js/aacc/comum.js"></script>	
 {% endblock %}

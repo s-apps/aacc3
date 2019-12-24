@@ -21,4 +21,5 @@
 {% block scripts %}
   {{ parent() }}
   <script src="{{ constant('BASE_URL') }}assets/js/aacc/cursos.js"></script>
+  <script src="{{ constant('BASE_URL') }}assets/js/aacc/comum.js"></script>	
 {% endblock %}

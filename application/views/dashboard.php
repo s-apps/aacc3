@@ -25,9 +25,9 @@
         <div class="card-body p-3">
           {% if constant('USUARIO_NIVEL') == 0 %}
           <div id="toolbar">
-	          <button class="btn btn-secondary btn-sm" id="btn-adicionar-aviso"><i class="fas fa-plus-circle"></i> Adicionar</button>
-            <button class="btn btn-secondary btn-sm" id="btn-editar-aviso" data-toggle="modal"><i class="fas fa-edit"></i> Editar</button>
-            <button class="btn btn-danger btn-sm" id="btn-excluir-aviso"><i class="fas fa-minus-circle"></i> Excluir</button>        
+	          <button class="btn btn-secondary btn-sm" id="btn-adicionar"><i class="fas fa-plus-circle"></i> Adicionar</button>
+            <button class="btn btn-secondary btn-sm" id="btn-editar" data-toggle="modal"><i class="fas fa-edit"></i> Editar</button>
+            <button class="btn btn-danger btn-sm" id="btn-excluir"><i class="fas fa-minus-circle"></i> Excluir</button>        
           </div>   
           {% endif %}
           <table id="lista-avisos"></table>
@@ -81,4 +81,5 @@
 {% block scripts %}
   {{ parent() }}
   <script src="{{ constant('BASE_URL') }}assets/js/aacc/dashboard.js"></script>
+  <script src="{{ constant('BASE_URL') }}assets/js/aacc/comum.js"></script>	
 {% endblock %}
