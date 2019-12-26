@@ -44,7 +44,6 @@ class Mod_usuario extends CI_Model {
 	return $atividades;
     }
 
-	
     public function salvar($usuario){
         if($usuario['nivel'] == 0){
             return $this->salvarComoProfessor($usuario);
@@ -54,68 +53,83 @@ class Mod_usuario extends CI_Model {
     }
 
     public function salvarComoProfessor($usuario){
-        $curso_ids = $usuario['curso_ids'];
-        // print("<pre>".print_r($curso_ids,true)."</pre>");
-        if($usuario['acao'] == 'adicionando'){
-            $this->db->where('email', $usuario['email']);
-            $num_rows = $this->db->count_all_results('usuario');
-            if($num_rows == 0){
-                unset($usuario['acao']);
-                unset($usuario['curso_ids']);
-                unset($usuario['usuario_ra']);
-                $usuario['senha'] = password_hash($usuario['senha'], PASSWORD_DEFAULT);
-                if($this->db->insert('usuario', $usuario)){
-                    if(!empty($curso_ids)){
-                        $professor_id = $this->db->insert_id();
-                        $ids = explode(',', $curso_ids);
-                        foreach($ids as $id){
-                            $this->db->set('professor_id', $professor_id);
-                            $this->db->set('curso_id', $id);
-                            $this->db->insert('professor_leciona');
-                        }
-                    }
-                    return '';
-                }else{
-                    return 'Ocorreu um erro inserindo usuário aluno';
-                }
-            }
-        }else{
-            unset($usuario['acao']);
-            unset($usuario['curso_ids']);
-            unset($usuario['usuario_ra']);
-            if(!empty($usuario['senha'])){
-                $usuario['senha'] = password_hash($usuario['senha'], PASSWORD_DEFAULT);
-            }else{
-                unset($usuario['senha']);
-            }
-            $this->db->where('usuario_id', $usuario['usuario_id']);
-            $this->db->update('usuario', $usuario);
-            return '';
+        if($this->usuarioExiste($usuario['usuario_id'], $usuario['email'])){
+            return 'O Email <strong>' . $usuario['email'] . '</strong> já existe!';
         }
+        // $curso_ids = $usuario['curso_ids'];
+        // if($usuario['acao'] == 'adicionando'){
+        //     $this->db->where('email', $usuario['email']);
+        //     $num_rows = $this->db->count_all_results('usuario');
+        //     if($num_rows == 0){
+        //         unset($usuario['acao']);
+        //         unset($usuario['curso_ids']);
+        //         unset($usuario['usuario_ra']);
+        //         $usuario['senha'] = password_hash($usuario['senha'], PASSWORD_DEFAULT);
+        //         if($this->db->insert('usuario', $usuario)){
+        //             if(!empty($curso_ids)){
+        //                 $professor_id = $this->db->insert_id();
+        //                 $ids = explode(',', $curso_ids);
+        //                 foreach($ids as $id){
+        //                     $this->db->set('professor_id', $professor_id);
+        //                     $this->db->set('curso_id', $id);
+        //                     $this->db->insert('professor_leciona');
+        //                 }
+        //             }
+        //             return '';
+        //         }else{
+        //             return 'Ocorreu um erro inserindo usuário aluno';
+        //         }
+        //     }
+        // }else{
+        //     unset($usuario['acao']);
+        //     unset($usuario['curso_ids']);
+        //     unset($usuario['usuario_ra']);
+        //     if(!empty($usuario['senha'])){
+        //         $usuario['senha'] = password_hash($usuario['senha'], PASSWORD_DEFAULT);
+        //     }else{
+        //         unset($usuario['senha']);
+        //     }
+        //     $this->db->where('usuario_id', $usuario['usuario_id']);
+        //     $this->db->update('usuario', $usuario);
+        //     return '';
+        // }
     }
 
     public function salvarComoAluno($usuario){
-        if($usuario['acao'] == 'adicionando'){
-            $this->db->where('email', $usuario['email']);
-            $this->db->or_where('usuario_ra', $usuario['usuario_ra']);
-            $num_rows = $this->db->count_all_results('usuario');
-            if($num_rows == 0){
-                unset($usuario['acao']);
-                if($this->db->insert('usuario', $usuario)){
-                    return '';
-                }else{
-                    return 'Ocorreu um erro inserindo usuário aluno';
-                }
-            }
-        }else{
-            unset($usuario['acao']);
-            if(isset($usuario['senha'])){
-                $usuario['senha'] = password_hash($usuario['senha'], PASSWORD_DEFAULT);
-            }
-            $this->db->where('usuario_id', $usuario['usuario_id']);
-            $this->db->update('usuario', $usuario);
-            return '';
+        // if($usuario['acao'] == 'adicionando'){
+        //     $this->db->where('email', $usuario['email']);
+        //     $this->db->or_where('usuario_ra', $usuario['usuario_ra']);
+        //     $num_rows = $this->db->count_all_results('usuario');
+        //     if($num_rows == 0){
+        //         unset($usuario['acao']);
+        //         $usuario['senha'] = password_hash($usuario['senha'], PASSWORD_DEFAULT);
+        //         if($this->db->insert('usuario', $usuario)){
+        //             return '';
+        //         }else{
+        //             return 'Ocorreu um erro inserindo usuário aluno';
+        //         }
+        //     }
+        // }else{
+        //     unset($usuario['acao']);
+        //     if(!empty($usuario['senha'])){
+        //         $usuario['senha'] = password_hash($usuario['senha'], PASSWORD_DEFAULT);
+        //     }else{
+        //         unset($usuario['senha']);
+        //     }
+        //     $this->db->where('usuario_id', $usuario['usuario_id']);
+        //     $this->db->update('usuario', $usuario);
+        //     return '';
+        // }
+    }
+
+    public function usuarioExiste($usuario_id, $email, $usuario_ra = null){
+        $this->db->where('email', $email);
+        $this->db->where('usuario_ra', $usuario_ra);
+        $num_rows = $this->db->count_all_results('usuario');
+        if($num_rows == 0){
+            return false;
         }
+        return true;
     }
 
     public function excluir($usuario_ids){
