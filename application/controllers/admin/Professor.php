@@ -42,6 +42,7 @@ class Professor extends CI_Controller {
     public function editar($usuario_id){
         $data['acao'] = 'editando';
         $data['cursos'] = $this->mod_curso->getAll();
+        $data['cursosDoProfessor'] = $this->mod_curso->getCursosDoProfessor($usuario_id);
         $data['usuario'] = $this->mod_usuario->getUsuarioById($usuario_id);
         $this->load->view('admin/formulario-professor', $data);
     }

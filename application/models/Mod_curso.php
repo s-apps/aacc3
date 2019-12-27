@@ -56,9 +56,9 @@ class Mod_curso extends CI_Model {
                     }
                 }else{
                     return 'O curso <strong>' . $curso . '</strong> já existe.';
-                }                
+                }
             }
-        } 
+        }
     }
 
     public function excluir($curso_ids){
@@ -73,5 +73,15 @@ class Mod_curso extends CI_Model {
         return $this->db->trans_status();
     }
 
-    
+    public function getCursosDoProfessor($usuario_id){
+      $this->db->select('curso_id');
+      $this->db->where('professor_id', $usuario_id);
+      $resultado = $this->db->get('professor_leciona')->result_array();
+      $ids = [];
+      foreach ($resultado as $curso_id) {
+        $ids[] = $curso_id['curso_id'];
+      }
+      return $ids;
+    }
+
 }

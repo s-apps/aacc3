@@ -30,7 +30,11 @@
                     <label for="curso_id">Cursos</label>
                     <select class="custom-select custom-select-sm" id="curso_id" name="curso_ids[]" multiple="multiple">
                         {% for curso in cursos %}
-                        <option value="{{ curso.curso_id }}">{{ curso.curso }}</option>
+                        {% set selected = ''%}
+                        {% if curso.curso_id in cursosDoProfessor %}
+                        {% set selected = ' selected="selected"' %}
+                        {% endif %}
+                        <option value="{{ curso.curso_id }}"{{ selected }}>{{ curso.curso }}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -41,11 +45,11 @@
             <a href="{{ constant('BASE_URL') }}admin/professor" class="btn btn-secondary btn-sm"><i class="fas fa-undo"></i> Cancelar</a>
         </div>
     </form>
-</div>            
+</div>
 {% endblock %}
 
 {% block scripts %}
   {{ parent() }}
   <script src="{{ constant('BASE_URL') }}assets/js/aacc/formulario-professor.js"></script>
-  <script src="{{ constant('BASE_URL') }}assets/js/aacc/comum.js"></script>	
+  <script src="{{ constant('BASE_URL') }}assets/js/aacc/comum.js"></script>
 {% endblock %}
