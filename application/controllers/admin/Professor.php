@@ -56,7 +56,7 @@ class Professor extends CI_Controller {
             'curso_ids' => $this->input->post('curso_ids'),
             'nivel' => 0
         );
-        $data['erro'] = $this->mod_usuario->salvar($usuario);
+        $data['erro'] = $this->mod_usuario->salvarComoProfessor($usuario);
         echo json_encode($data);
     }
 

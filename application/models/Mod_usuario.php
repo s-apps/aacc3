@@ -24,7 +24,7 @@ class Mod_usuario extends CI_Model {
         $usuario = $this->db->get('usuario')->row_array();
         return ($usuario['email'] == $email && password_verify($senha, $usuario['senha'])) ? $usuario : false;
     }
-    
+
     public function getAllUsuariosByNivel($nivel){
         $this->db->where('nivel', $nivel);
         return $this->db->get('usuario')->result_array();
@@ -39,63 +39,48 @@ class Mod_usuario extends CI_Model {
 	$this->db->where('usuario_id', $usuario_id);
 	$atividades = $this->db->get('atividade')->result_array();
         foreach($atividades as &$atividade){
-	  $atividade['data'] = mysqlParaView($atividade['data']);	
+	  $atividade['data'] = mysqlParaView($atividade['data']);
         }
 	return $atividades;
     }
 
-    public function salvar($usuario){
-        if($usuario['nivel'] == 0){
-            return $this->salvarComoProfessor($usuario);
-        }else{
-            return $this->salvarComoAluno($usuario);
-        }
-    }
-
     public function salvarComoProfessor($usuario){
-        if($this->usuarioExiste($usuario['usuario_id'], $usuario['email'])){
-            return 'O Email <strong>' . $usuario['email'] . '</strong> já existe!';
+      $acao = $usuario['acao'];
+      unset($usuario['acao']);
+      $curso_ids = explode(',', $usuario['curso_ids']);
+      unset($usuario['curso_ids']);
+      if($acao == 'adicionando'){
+        $this->db->where('email', $usuario['email']);
+        $num_rows = $this->db->count_all_results('usuario');
+        if($num_rows == 0){
+          $usuario['senha'] = password_hash($usuario['senha'], PASSWORD_DEFAULT);
+          if($this->db->insert('usuario', $usuario)){
+            $professor_id = $this->db->insert_id();
+            $this->db->trans_start();
+            foreach ($curso_ids as $curso_id) {
+              $this->db->set('professor_id', $professor_id);
+              $this->db->set('curso_id', $curso_id);
+              $this->db->insert('professor_leciona');
+            }
+            $this->db->trans_complete();
+            if($this->db->trans_status()){
+              return '';
+            }else{
+              return 'Ocorreu um erro inserindo professor na tabela usuario';
+            }
+          }
+        }else{
+          return 'O email <strong>' . $usuario['email'] . '</strong> já existe!';
         }
-        // $curso_ids = $usuario['curso_ids'];
-        // if($usuario['acao'] == 'adicionando'){
-        //     $this->db->where('email', $usuario['email']);
-        //     $num_rows = $this->db->count_all_results('usuario');
-        //     if($num_rows == 0){
-        //         unset($usuario['acao']);
-        //         unset($usuario['curso_ids']);
-        //         unset($usuario['usuario_ra']);
-        //         $usuario['senha'] = password_hash($usuario['senha'], PASSWORD_DEFAULT);
-        //         if($this->db->insert('usuario', $usuario)){
-        //             if(!empty($curso_ids)){
-        //                 $professor_id = $this->db->insert_id();
-        //                 $ids = explode(',', $curso_ids);
-        //                 foreach($ids as $id){
-        //                     $this->db->set('professor_id', $professor_id);
-        //                     $this->db->set('curso_id', $id);
-        //                     $this->db->insert('professor_leciona');
-        //                 }
-        //             }
-        //             return '';
-        //         }else{
-        //             return 'Ocorreu um erro inserindo usuário aluno';
-        //         }
-        //     }
-        // }else{
-        //     unset($usuario['acao']);
-        //     unset($usuario['curso_ids']);
-        //     unset($usuario['usuario_ra']);
-        //     if(!empty($usuario['senha'])){
-        //         $usuario['senha'] = password_hash($usuario['senha'], PASSWORD_DEFAULT);
-        //     }else{
-        //         unset($usuario['senha']);
-        //     }
-        //     $this->db->where('usuario_id', $usuario['usuario_id']);
-        //     $this->db->update('usuario', $usuario);
-        //     return '';
-        // }
+      }else{
+        
+      }
     }
 
     public function salvarComoAluno($usuario){
+      var_dump($usuario);
+      exit;
+
         // if($usuario['acao'] == 'adicionando'){
         //     $this->db->where('email', $usuario['email']);
         //     $this->db->or_where('usuario_ra', $usuario['usuario_ra']);
@@ -120,16 +105,6 @@ class Mod_usuario extends CI_Model {
         //     $this->db->update('usuario', $usuario);
         //     return '';
         // }
-    }
-
-    public function usuarioExiste($usuario_id, $email, $usuario_ra = null){
-        $this->db->where('email', $email);
-        $this->db->where('usuario_ra', $usuario_ra);
-        $num_rows = $this->db->count_all_results('usuario');
-        if($num_rows == 0){
-            return false;
-        }
-        return true;
     }
 
     public function excluir($usuario_ids){
