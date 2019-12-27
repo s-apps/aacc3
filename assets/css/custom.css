@@ -10,11 +10,11 @@ body {
 main > .container {
     padding: 60px 15px 15px;
 }
-  
+
 .footer {
   background-color: #343a40;
 }
-  
+
 .footer > .container {
   padding-right: 15px;
   padding-left: 15px;
@@ -33,7 +33,7 @@ main > .container {
 }
 
 .dropdown .dropdown-menu .dropdown-item:active, .dropdown .dropdown-menu .dropdown-item:hover{
-  background-color: #212529 !important; 
+  background-color: #212529 !important;
   color:#fff;
 }
 
@@ -78,3 +78,7 @@ a, a:focus, a:hover {
 .erro-login {
   display: none;
 }
+
+/* .select2-results__option[aria-selected="true"] {
+  display: none;
+} */
