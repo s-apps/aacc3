@@ -75,7 +75,7 @@ class Mod_usuario extends CI_Model {
         return 'O email <strong>' . $usuario['email'] . '</strong> já existe!';
       }
     }else{
-
+      
     }
   }
 
