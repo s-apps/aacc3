@@ -114,6 +114,39 @@ class Mod_usuario extends CI_Model {
   }
 
   public function salvarComoAluno($usuario){
+    $acao = $usuario['acao'];
+    unset($usuario['acao']);
+    $this->db->where('email', $usuario['email']);
+    $this->db->or_where('usuario_ra', $usuario['usuario_ra']);
+    $resultado = $this->db->get('usuario')->row_array();
+    if($acao == 'adicionando'){
+      if(empty($resultado)){
+        unset($usuario['usuario_id']);
+        $usuario['senha'] = password_hash($usuario['senha'], PASSWORD_DEFAULT);
+        if($this->db->insert('usuario', $usuario)){
+          return '';
+        }else{
+          return 'Ocorreu um erro inserindo aluno na tabela usuario';
+        }
+      }
+    }else{
+      if(empty($resultado) || $resultado['usuario_id'] == $usuario['usuario_id']){
+        $usuario_id = $usuario['usuario_id'];
+        unset($usuario['usuario_id']);
+        if(!empty($usuario['senha'])){
+          $usuario['senha'] = password_hash($usuario['senha'], PASSWORD_DEFAULT);
+        }else{
+          unset($usuario['senha']);
+        }
+        $this->db->where('usuario_id', $usuario_id);
+        if($this->db->update('usuario', $usuario)){
+          return '';
+        }else{
+          return 'Ocorreu um erro atualizando professor na tabela usuario';
+        }
+      }
+    }
+    return 'O email <strong>' . $usuario['email'] . '</strong> ou o RA <strong>' . $usuario['usuario_ra'] . '</strong> já existem!';
   }
 
   public function excluir($usuario_ids){
