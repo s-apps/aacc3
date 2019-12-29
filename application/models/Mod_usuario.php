@@ -49,16 +49,16 @@ class Mod_usuario extends CI_Model {
     unset($usuario['acao']);
     $curso_ids = explode(',', $usuario['curso_ids']);
     unset($usuario['curso_ids']);
+    $this->db->where('email', $usuario['email']);
+    $resultado = $this->db->get('usuario')->row_array();
     if($acao == 'adicionando'){
-      $this->db->where('email', $usuario['email']);
-      $num_rows = $this->db->count_all_results('usuario');
-      if($num_rows == 0){
+      if(empty($resultado)){
         $usuario['senha'] = password_hash($usuario['senha'], PASSWORD_DEFAULT);
         $this->db->trans_begin();
         if($this->db->insert('usuario', $usuario)){
-          $professor_id = $this->db->insert_id();
+          $usuario_id = $this->db->insert_id();
           foreach ($curso_ids as $curso_id) {
-            $this->db->set('professor_id', $professor_id);
+            $this->db->set('professor_id', $usuario_id);
             $this->db->set('curso_id', $curso_id);
             $this->db->insert('professor_leciona');
           }
@@ -71,12 +71,44 @@ class Mod_usuario extends CI_Model {
             return 'Ocorreu um erro inserindo professor na tabela usuario';
           }
         }
-      }else{
-        return 'O email <strong>' . $usuario['email'] . '</strong> já existe!';
       }
     }else{
-      
+      if(empty($resultado) || $resultado['usuario_id'] == $usuario['usuario_id']){
+        if($this->atualizarProfessor($usuario, $curso_ids)){
+          return '';
+        }else{
+          return 'Ocorreu um erro atualizando professor na tabela usuario';
+        }
+      }
     }
+    return 'O email <strong>' . $usuario['email'] . '</strong> já existe!';
+  }
+
+  public function atualizarProfessor($usuario, $curso_ids){
+    if(!empty($usuario['senha'])){
+      $usuario['senha'] = password_hash($usuario['senha'], PASSWORD_DEFAULT);
+    }else{
+      unset($usuario['senha']);
+    }
+    $this->db->trans_begin();
+    $this->db->where('usuario_id', $usuario['usuario_id']);
+    if($this->db->update('usuario', $usuario)){
+      $this->db->where('professor_id', $usuario['usuario_id']);
+      $this->db->delete('professor_leciona');
+      foreach ($curso_ids as $curso_id) {
+        $this->db->set('professor_id', $usuario['usuario_id']);
+        $this->db->set('curso_id', $curso_id);
+        $this->db->insert('professor_leciona');
+      }
+      $this->db->trans_complete();
+      if($this->db->trans_status()){
+        $this->db->trans_commit();
+        return true;
+      }else{
+        $this->db->trans_rollback();
+      }
+    }
+    return false;
   }
 
   public function salvarComoAluno($usuario){
