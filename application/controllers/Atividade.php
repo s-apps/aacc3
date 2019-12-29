@@ -71,7 +71,7 @@ class Atividade extends CI_Controller {
             'data' => viewParaMysql($this->input->post('data_atividade')),
             'horas_inicio' => $this->input->post('horas_inicio'),
             'horas_termino' => $this->input->post('horas_termino'),
-            'usuario_ra' => $this->input->post('usuario_ra'),
+            'usuario_id' => $this->input->post('usuario_id'),
             'atividade' => $this->input->post('atividade'),
             'validacao' => $this->input->post('validacao'),
             'categoria_id' => $this->input->post('categoria_id'),
@@ -89,7 +89,7 @@ class Atividade extends CI_Controller {
         $config['encrypt_name'] = true;
         $this->load->library('upload', $config);   
         
-        if(!$this->upload->do_upload('imagem_comprovante')){
+        if(!$this->upload->do_upload('imagem_comprovante') && $atividade['acao'] == 'adicionando'){
             $data['erro'] = $this->upload->display_errors();
         }else{
             $imagem_comprovante = $this->upload->data('file_name');

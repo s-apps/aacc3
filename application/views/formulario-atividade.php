@@ -138,7 +138,9 @@
 	        </div>
 	        <div class="modal-body">
                 <!-- {{ atividade.imagem_comprovante |split('.')|last }} -->
+                {% if acao == 'editando' %}
                 <iframe src="{{ constant('BASE_URL') }}assets/img/comprovantes/{{ atividade.imagem_comprovante }}" style="width:100%; height:auto; border:0;"></iframe>
+                {% endif %}
 	        </div>
 	        <div class="modal-footer">
         	    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Fechar</button>

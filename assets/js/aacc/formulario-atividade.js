@@ -115,7 +115,7 @@ $frmAtividade.on("submit", function(event){
         data_atividade: $("#data_atividade").val(),
         horas_inicio: $("#horas_inicio").val(),
         horas_termino: $("#horas_termino").val(),
-        usuario_ra: $("#usuario_ra").val(),
+        usuario_id: $("#usuario_id").val(),
         atividade: $("#atividade").val(),
         categoria_id: $("#categoria_id").val(),
         modalidade_id: $("#modalidade_id").val(),
@@ -167,7 +167,7 @@ function camposValidos(atividade){
     }else if(horasInicioMaiorHorasTermino(atividade.horas_inicio, atividade.horas_termino)){
         exibirMensagem("Atenção!", "Horas de início não pode ser menor ou igual Horas término");
         return false;
-    }else if(atividade.usuario_ra.length === 0){
+    }else if(atividade.usuario_id.length === 0){
         exibirMensagem("Atenção!", "Informe o Aluno");
         return false;
     }else if(atividade.atividade.length === 0){

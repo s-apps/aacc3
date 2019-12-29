@@ -3,7 +3,7 @@
 class Mod_atividade extends CI_Model {
 
     public function lista($limit, $offset, $sort, $order, $search, $total = false) {
-        $this->db->join('usuario', 'usuario.usuario_ra = atividade.usuario_ra');
+        $this->db->join('usuario', 'usuario.usuario_id = atividade.usuario_id');
         $this->db->join('modalidade', 'modalidade.modalidade_id = atividade.modalidade_id');
         if (!empty($search)) {
             $this->db->where("(usuario.usuario_ra LIKE '%$search%' OR usuario.nome LIKE '%$search%' OR usuario.email LIKE '%$search%')", null, false);
