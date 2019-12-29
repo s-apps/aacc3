@@ -52,3 +52,8 @@ function camposValidos(usuario){
         return true;
     }
 }
+
+$("#curso_id").on("select2:unselect", function (e) { 
+    //console.log("select2:unselect", e); 
+    console.log($("#curso_id").val());
+});

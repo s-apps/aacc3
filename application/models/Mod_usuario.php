@@ -95,10 +95,12 @@ class Mod_usuario extends CI_Model {
     if($this->db->update('usuario', $usuario)){
       $this->db->where('professor_id', $usuario['usuario_id']);
       $this->db->delete('professor_leciona');
-      foreach ($curso_ids as $curso_id) {
-        $this->db->set('professor_id', $usuario['usuario_id']);
-        $this->db->set('curso_id', $curso_id);
-        $this->db->insert('professor_leciona');
+      if(! empty($curso_ids[0])){
+        foreach ($curso_ids as $curso_id) {
+          $this->db->set('professor_id', $usuario['usuario_id']);
+          $this->db->set('curso_id', $curso_id);
+          $this->db->insert('professor_leciona');
+        }
       }
       $this->db->trans_complete();
       if($this->db->trans_status()){
@@ -112,33 +114,6 @@ class Mod_usuario extends CI_Model {
   }
 
   public function salvarComoAluno($usuario){
-    var_dump($usuario);
-    exit;
-
-    // if($usuario['acao'] == 'adicionando'){
-    //     $this->db->where('email', $usuario['email']);
-    //     $this->db->or_where('usuario_ra', $usuario['usuario_ra']);
-    //     $num_rows = $this->db->count_all_results('usuario');
-    //     if($num_rows == 0){
-    //         unset($usuario['acao']);
-    //         $usuario['senha'] = password_hash($usuario['senha'], PASSWORD_DEFAULT);
-    //         if($this->db->insert('usuario', $usuario)){
-    //             return '';
-    //         }else{
-    //             return 'Ocorreu um erro inserindo usuário aluno';
-    //         }
-    //     }
-    // }else{
-    //     unset($usuario['acao']);
-    //     if(!empty($usuario['senha'])){
-    //         $usuario['senha'] = password_hash($usuario['senha'], PASSWORD_DEFAULT);
-    //     }else{
-    //         unset($usuario['senha']);
-    //     }
-    //     $this->db->where('usuario_id', $usuario['usuario_id']);
-    //     $this->db->update('usuario', $usuario);
-    //     return '';
-    // }
   }
 
   public function excluir($usuario_ids){
