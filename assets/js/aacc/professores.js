@@ -66,6 +66,9 @@ function excluir(){
             });
             $table.bootstrapTable("refresh", { silent: true });
             $("#btn-editar, #btn-excluir").prop("disabled", true);
+        }else{
+          exibirMensagem("Atenção!", "Ocorreu um erro deletando");
+          return false;
         }
     });
 }

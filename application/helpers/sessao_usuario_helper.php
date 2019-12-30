@@ -10,6 +10,11 @@
         return $ci->session->userdata('nome_usuario');
     }
 
+    function getUsuarioId(){
+      $ci = get_instance();
+      return $ci->session->userdata('usuario_id');
+    }
+
     function usuarioLogado(){
         $ci = get_instance();
         return $ci->session->userdata('usuario_logado');

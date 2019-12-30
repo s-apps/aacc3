@@ -42,6 +42,7 @@
                 <div class="form-group col-md-6">
                     <label for="usuario_id">Aluno</label>
                     <select id="usuario_id" name="usuario_id" class="form-control">
+                        {% if constant('USUARIO_NIVEL') == 0 %}
                         <option></option>
                         {% for usuario in usuarios %}
                         {% set selected = ''%}
@@ -50,6 +51,9 @@
                         {% endif %}
                         <option value="{{ usuario.usuario_id }}"{{ selected }}>{{ usuario.usuario_ra }} | {{ usuario.nome }} | {{ usuario.email }}</option>
                         {% endfor %}
+                        {% else %}
+                        <option value="{{ constant('USUARIO_ID') }}">{{ constant('USUARIO_NOME') }}</option>
+                        {% endif %}
                     </select>
                 </div>
             </div>

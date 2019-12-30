@@ -9,6 +9,7 @@ class Constantes {
 		define('USUARIO_LOGADO', usuarioLogado());
 		define('BASE_URL', base_url());
 		define('USUARIO_NIVEL', getUsuarioNivel());
+    define('USUARIO_ID', getUsuarioId());
         define('USUARIO_NOME', getUsuarioNome());
     }
 }

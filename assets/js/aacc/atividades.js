@@ -12,6 +12,8 @@ $(document).ready(function(){
         clickToSelect: true,
         search: true,
         showRefresh: true,
+        sortName: "data",
+        sortOrder: "desc",
         exportDataType: "all",
         showExport: true,
         exportOptions: {
@@ -26,6 +28,7 @@ $(document).ready(function(){
         columns: [
             { field: "selecionado", checkbox: true },
             { field: "data", title: "Data", sortable: true },
+            { field: "atividade", title: "Atividade", sortable: true },
             { field: "usuario_ra", title: "RA", sortable: true },
             { field: "nome", title: "Aluno", sortable: true },
             { field: "email", title: "Email", sortable: true }

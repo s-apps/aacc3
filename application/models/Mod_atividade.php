@@ -5,6 +5,9 @@ class Mod_atividade extends CI_Model {
     public function lista($limit, $offset, $sort, $order, $search, $total = false) {
         $this->db->join('usuario', 'usuario.usuario_id = atividade.usuario_id');
         $this->db->join('modalidade', 'modalidade.modalidade_id = atividade.modalidade_id');
+        if(USUARIO_NIVEL == 1){
+          $this->db->where('usuario.usuario_id', USUARIO_ID);
+        }
         if (!empty($search)) {
             $this->db->where("(usuario.usuario_ra LIKE '%$search%' OR usuario.nome LIKE '%$search%' OR usuario.email LIKE '%$search%')", null, false);
         }
@@ -18,7 +21,7 @@ class Mod_atividade extends CI_Model {
         }
         return $atividades;
     }
-    
+
     public function salvar($atividade){
         $carga_horaria = getCargaHoraria($atividade['horas_inicio'], $atividade['horas_termino']);
         if($atividade['acao'] == 'adicionando'){
@@ -26,18 +29,18 @@ class Mod_atividade extends CI_Model {
             $num_rows = $this->db->count_all_results('atividade');
             if($num_rows == 0){
                 unset($atividade['acao']);
-                $atividade = array_merge($atividade, array('carga_horaria' => $carga_horaria)); 
+                $atividade = array_merge($atividade, array('carga_horaria' => $carga_horaria));
                 if($this->db->insert('atividade', $atividade)){
                     return '';
                 }else{
                     return 'Ocorreu um erro inserindo atividade';
-                }           
+                }
             }else{
                 return 'Atividade já existe';
             }
         }else{
             unset($atividade['acao']);
-            $atividade = array_merge($atividade, array('carga_horaria' => $carga_horaria)); 
+            $atividade = array_merge($atividade, array('carga_horaria' => $carga_horaria));
             $this->db->where('atividade_id', $atividade['atividade_id']);
             if($this->db->update('atividade', $atividade)){
                 return '';

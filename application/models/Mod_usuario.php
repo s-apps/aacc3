@@ -153,7 +153,20 @@ class Mod_usuario extends CI_Model {
   }
 
   public function excluir($usuario_ids){
+    $this->db->trans_begin();
+
     $this->db->where_in('usuario_id', $usuario_ids);
-    return $this->db->delete('usuario');
+    $this->db->delete('usuario');
+    $this->db->where_in('professor_id', $usuario_ids);
+    $this->db->delete('professor_leciona');
+
+    $this->db->trans_complete();
+    if($this->db->trans_status()){
+      $this->db->trans_commit();
+      return true;
+    }else{
+      $this->db->trans_rollback();
+    }
+    return false;
   }
 }
