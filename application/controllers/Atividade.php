@@ -16,7 +16,7 @@ class Atividade extends CI_Controller {
         $this->load->model('mod_comprovante');
         $this->load->helper('calcula_horas');
         $this->load->helper('formata_data');
-    }    
+    }
 
     public function index(){
         $data['acao'] = 'listando';
@@ -79,7 +79,7 @@ class Atividade extends CI_Controller {
             'comprovante_id' => $this->input->post('comprovante_id'),
             'validacao' => $this->input->post('validacao')
         );
-        
+
         $config['upload_path'] = './assets/img/comprovantes/';
         $config['allowed_types'] = 'gif|jpg|png|pdf';
         $config['max_size'] = 1024;
@@ -87,9 +87,13 @@ class Atividade extends CI_Controller {
         $config['max_height'] = 0;
         $config['remove_spaces'] = true;
         $config['encrypt_name'] = true;
-        $this->load->library('upload', $config);   
-        
-        if(!$this->upload->do_upload('imagem_comprovante') && $atividade['acao'] == 'adicionando'){
+        $this->load->library('upload', $config);
+
+        $imagem_comprovante = $_FILES['imagem_comprovante']['name'];
+        var_dump($imagem_comprovante);
+        exit;
+
+        if(!$this->upload->do_upload('imagem_comprovante')){
             $data['erro'] = $this->upload->display_errors();
         }else{
             $imagem_comprovante = $this->upload->data('file_name');
