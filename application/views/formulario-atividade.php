@@ -17,7 +17,7 @@
                         <div class="input-group-append" data-target="#dataatividade" data-toggle="datetimepicker">
                             <div class="input-group-text bg-secondary text-white border border-secondary"><i class="fa fa-calendar-alt"></i></div>
                         </div>
-                    </div>                    
+                    </div>
                 </div>
                 <div class="form-group col-md-2">
                     <label for="horas_inicio">Horas início</label>
@@ -50,7 +50,7 @@
                         {% endif %}
                         <option value="{{ usuario.usuario_id }}"{{ selected }}>{{ usuario.usuario_ra }} | {{ usuario.nome }} | {{ usuario.email }}</option>
                         {% endfor %}
-                    </select>    
+                    </select>
                 </div>
             </div>
             <div class="form-row">
@@ -71,7 +71,7 @@
                         {% endif %}
                         <option value="{{ categoria.categoria_id }}"{{ selected }}>{{ categoria.categoria }}</option>
                         {% endfor %}
-                    </select>    
+                    </select>
                 </div>
             </div>
             <div class="form-row">
@@ -81,8 +81,8 @@
                         <option></option>
                         {% if acao == 'editando' and modalidade.modalidade_id is defined %}
                         <option value="{{ modalidade.modalidade_id }}" selected="selected">{{ modalidade.modalidade }}</option>
-                        {% endif %} 
-                    </select>    
+                        {% endif %}
+                    </select>
                 </div>
             </div>
             <div class="form-row">
@@ -92,12 +92,13 @@
                         <option></option>
                         {% if acao == 'editando' and comprovante.comprovante_id is defined %}
                         <option value="{{ comprovante.comprovante_id }}" selected="selected">{{ comprovante.comprovante }}</option>
-                        {% endif %} 
-                    </select>    
+                        {% endif %}
+                    </select>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
+                  <label for="imagem_comprovante">Imagem do comprovante</label>
                     <div class="input-group">
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="imagem_comprovante" name="imagem_comprovante">
@@ -110,7 +111,7 @@
                         {% endif %}
                     </div>
                 </div>
-            </div>   
+            </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="validacao">Validação</label>
@@ -119,14 +120,14 @@
                         <option value="1"{% if atividade.validacao == 1 and acao == 'editando' %} selected="selected"{% endif %}>Válido</option>
                     </select>
                 </div>
-            </div>     
+            </div>
         </div>
         <div class="card-footer">
             <button type="submit" class="btn btn-secondary btn-sm"><i class="fas fa-save"></i> Salvar</button>
             <a href="{{ constant('BASE_URL') }}atividade" class="btn btn-secondary btn-sm"><i class="fas fa-undo"></i> Cancelar</a>
         </div>
-    </form>    
-</div>  
+    </form>
+</div>
 <div class="modal" tabindex="-1" role="dialog" id="midia">
 	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 	    <div class="modal-content">
@@ -153,5 +154,5 @@
 {% block scripts %}
   {{ parent() }}
   <script src="{{ constant('BASE_URL') }}assets/js/aacc/formulario-atividade.js"></script>
-  <script src="{{ constant('BASE_URL') }}assets/js/aacc/comum.js"></script>	
+  <script src="{{ constant('BASE_URL') }}assets/js/aacc/comum.js"></script>
 {% endblock %}

@@ -89,16 +89,30 @@ class Atividade extends CI_Controller {
         $config['encrypt_name'] = true;
         $this->load->library('upload', $config);
 
-        $imagem_comprovante = $_FILES['imagem_comprovante']['name'];
-        var_dump($imagem_comprovante);
-        exit;
+        // $imagem_comprovante = $_FILES['imagem_comprovante']['name'];
+        // var_dump($imagem_comprovante);
+        // exit;
+        $data['erro'] = '';
 
-        if(!$this->upload->do_upload('imagem_comprovante')){
+        if($atividade['acao'] == 'adicionando'){
+          if(!$this->upload->do_upload('imagem_comprovante')){
             $data['erro'] = $this->upload->display_errors();
-        }else{
+          }else{
             $imagem_comprovante = $this->upload->data('file_name');
             $atividade = array_merge($atividade, array('imagem_comprovante' => $imagem_comprovante));
             $data['erro'] = $this->mod_atividade->salvar($atividade);
+          }
+        }else{
+          $imagem_comprovante = $_FILES['imagem_comprovante']['name'];
+          if(!empty($imagem_comprovante)){
+            if(!$this->upload->do_upload('imagem_comprovante')){
+              $data['erro'] = $this->upload->display_errors();
+            }else{
+              $imagem_comprovante = $this->upload->data('file_name');
+              $atividade = array_merge($atividade, array('imagem_comprovante' => $imagem_comprovante));
+              $data['erro'] = $this->mod_atividade->salvar($atividade);
+            }
+          }
         }
         echo json_encode($data);
     }

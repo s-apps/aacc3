@@ -14,9 +14,10 @@
                     {% for usuario in usuarios %}
                     <option value="{{ usuario.usuario_id }}">{{ usuario.usuario_ra }} | {{ usuario.nome }} | {{ usuario.email }}</option>
                     {% endfor %}
-                </select>    
+                </select>
         </div>
-    </div>    
+    </div>
+    <table id="horas-realizadas"></table>   
   </div>
 </div>
 {% endblock %}
@@ -24,5 +25,5 @@
 {% block scripts %}
   {{ parent() }}
   <script src="{{ constant('BASE_URL') }}assets/js/aacc/aluno-horas-realizadas.js"></script>
-  <script src="{{ constant('BASE_URL') }}assets/js/aacc/comum.js"></script>	
+  <script src="{{ constant('BASE_URL') }}assets/js/aacc/comum.js"></script>
 {% endblock %}

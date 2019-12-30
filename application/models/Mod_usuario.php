@@ -35,12 +35,15 @@ class Mod_usuario extends CI_Model {
     return $this->db->get('usuario')->row_array();
   }
 
-  public function getHorasRealizadas($usuario_id){
+  public function getTotalHorasRealizadas($usuario_id){
     $this->db->where('usuario_id', $usuario_id);
     $atividades = $this->db->get('atividade')->result_array();
+    $horas = [];
     foreach($atividades as &$atividade){
       $atividade['data'] = mysqlParaView($atividade['data']);
+      // $horas[] = $atividade['carga_horaria'];
     }
+    // $atividades = array_merge($atividades, array('totalHorasRealizadas' => getTotalHorasRealizadas($horas)));
     return $atividades;
   }
 
