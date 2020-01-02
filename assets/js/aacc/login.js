@@ -28,7 +28,8 @@ function limparErros(){
 }
 
 function camposValidos(usuario){
-    return (usuario.email.length > 0 && usuario.senha.length > 0);
+    var regexEmail = /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/;
+    return (usuario.email.length > 0 && usuario.senha.length > 0 && regexEmail.test(usuario.email));
 }
 
 function exibirErro(){
@@ -71,4 +72,3 @@ function enviarDados(usuario) {
     // Send our FormData object; HTTP headers are set automatically
     XHR.send(FD);
 }
-
