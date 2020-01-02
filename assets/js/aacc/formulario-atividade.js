@@ -7,14 +7,16 @@ var $frmAtividade = $("#frmAtividade");
 // var segmentos = url.split('/');
 
 $(document).ready(function(){
-    $usuario_id.select2({
+    if(! $usuario_id.length){
+      $usuario_id.select2({
         placeholder: "Selecione o aluno",
         theme: "bootstrap",
         language: { noResults: function () {
             return "Nenhum resultado encontrado";
           }
         }
-    });
+      });
+    }
     $categoria_id.select2({
         placeholder: "Selecione a categoria",
         theme: "bootstrap",

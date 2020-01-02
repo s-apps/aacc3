@@ -38,11 +38,12 @@
                     </div>
                 </div>
             </div>
-            <div class="form-row">
+
+            {% if constant('USUARIO_NIVEL') == 0 %}
+            <div class="form-row" id="campo-usuario-id">
                 <div class="form-group col-md-6">
                     <label for="usuario_id">Aluno</label>
                     <select id="usuario_id" name="usuario_id" class="form-control">
-                        {% if constant('USUARIO_NIVEL') == 0 %}
                         <option></option>
                         {% for usuario in usuarios %}
                         {% set selected = ''%}
@@ -51,19 +52,20 @@
                         {% endif %}
                         <option value="{{ usuario.usuario_id }}"{{ selected }}>{{ usuario.usuario_ra }} | {{ usuario.nome }} | {{ usuario.email }}</option>
                         {% endfor %}
-                        {% else %}
-                        <option value="{{ constant('USUARIO_ID') }}">{{ constant('USUARIO_NOME') }}</option>
-                        {% endif %}
                     </select>
                 </div>
             </div>
+            {% else %}
+            <input type="hidden" name="usuario_id" id="usuario_id" value="{{ constant('USUARIO_ID') }}">
+            {% endif %}
+
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="atividade">Atividade</label>
                     <textarea id="atividade" name="atividade" class="form-control" rows="3">{% if acao == 'editando' and atividade.atividade is defined %}{{ atividade.atividade }}{% endif %}</textarea>
                 </div>
             </div>
-            <div class="form-row">
+            <div class="form-row" id="campo-categoria-id">
                 <div class="form-group col-md-6">
                 <label for="categoria_id">Categoria</label>
                     <select id="categoria_id" name="categoria_id" class="form-control">
@@ -78,7 +80,7 @@
                     </select>
                 </div>
             </div>
-            <div class="form-row">
+            <div class="form-row" id="campo-modalidade-id">
                 <div class="form-group col-md-6">
                 <label for="modalidade_id">Modalidade</label>
                     <select id="modalidade_id" name="modalidade_id" class="form-control">
