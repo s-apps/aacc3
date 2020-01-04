@@ -38,8 +38,9 @@ $("#usuario_id").on("select2:select", function (e) {
   })
   .done(function(data){
     $table.bootstrapTable("removeAll");
+    $table.fadeOut("slow");
+
     var horas = [];
-    console.log(data.horasRealizadas);
     $.each(data.horasRealizadas, function (key, atividade) {
       horas.push({carga_horaria: atividade.carga_horaria});
       $table.bootstrapTable("insertRow", {
@@ -54,6 +55,7 @@ $("#usuario_id").on("select2:select", function (e) {
       });
     });
     $("#totalHorasRealizadas").html("Total de horas: <strong>" + somaHoras(horas) + "</strong>");
+    $table.fadeIn("slow");
   });
 });
 

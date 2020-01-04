@@ -86,3 +86,7 @@ a, a:focus, a:hover {
 #atividade {
   font-size: .875rem;
 }
+
+#horas-realizadas-aluno {
+  display: none;
+}
