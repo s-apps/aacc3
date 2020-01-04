@@ -37,6 +37,7 @@ $("#frmProfessor").on("submit", function(event){
 
 function camposValidos(usuario){
     var regexEmail = /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/;
+    var regexSenha = /^\S{8}$/;
     if(usuario.nome.length === 0){
         exibirMensagem("Atenção!", "Informe o Nome completo");
         $("#nome").focus();
@@ -45,8 +46,12 @@ function camposValidos(usuario){
         exibirMensagem("Atenção!", "Informe o Email");
         $("#email").focus();
         return false;
-    }else if(usuario.senha.length < 8 && usuario.acao == 'adicionando'){
-        exibirMensagem("Atenção!", "Informe a Senha com no mínimo 8 caracteres");
+    }else if(usuario.acao == 'adicionando' && ! regexSenha.test(usuario.senha)){
+        exibirMensagem("Atenção!", "Informe a Senha");
+        $("#senha").focus();
+        return false;
+    }else if(usuario.acao == 'editando' && usuario.senha.length > 0 && ! regexSenha.test(usuario.senha)){
+        exibirMensagem("Atenção!", "Informe a Senha");
         $("#senha").focus();
         return false;
     }else{
