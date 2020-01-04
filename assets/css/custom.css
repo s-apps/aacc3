@@ -90,3 +90,7 @@ a, a:focus, a:hover {
 #horas-realizadas-aluno {
   display: none;
 }
+
+#form-recovery {
+  display: none;
+}

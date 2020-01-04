@@ -1,6 +1,12 @@
 var btnEntrarLoading = document.querySelector('.btn-login-loading');
 var frmLogin = document.querySelector('#frmLogin');
 var alerta = document.querySelector('.alert');
+var esqueceuSenha = document.querySelector('#esqueceuSenha');
+var btnCancelarRecovery = document.querySelector('.btn-cancelar-recovery');
+var form_login = document.querySelector('#form-login');
+var form_recovery = document.querySelector('#form-recovery');
+var inputEmail = document.querySelector('#email');
+
 
 window.addEventListener('load', function(){
     frmLogin.email.focus();
@@ -21,6 +27,16 @@ frmLogin.addEventListener('submit', function(event){
     }else{
         exibirErro();
     }
+});
+
+esqueceuSenha.addEventListener('click', function(){
+    form_login.style.display = 'none';
+    form_recovery.style.display = 'inline-block';
+});
+
+btnCancelarRecovery.addEventListener('click', function(){
+    form_login.style.display = 'inline-block';
+    form_recovery.style.display = 'none';
 });
 
 function limparErros(){

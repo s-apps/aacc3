@@ -2,7 +2,7 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<div class="card login shadow-sm p-1 mb-5 bg-white">
+<div class="card login shadow-sm p-1 mb-5 bg-white" id="form-login">
     <div class="card-body">
       <div class="alert alert-danger w-100 pt-1 pb-1 text-center erro-login" role="alert"></div>
         <form id="frmLogin" name="frmLogin">
@@ -19,6 +19,22 @@
         </form>
     </div>
 </div>  
+
+<div class="card login shadow-sm p-1 mb-5 bg-white" id="form-recovery">
+    <div class="card-body">
+      <div class="alert alert-danger w-100 pt-1 pb-1 text-center erro-login" role="alert"></div>
+        <form id="frmRecoveryPassword" name="frmRecoveryPassword">
+            <div class="form-group">
+              <input type="text" class="form-control form-control-sm" id="email" name="email" placeholder="Email" autofocus>
+              <span class="form-text text-muted">Informe o Email cadastrado no sistema.</span>
+            </div>
+            <button type="submit" class="btn btn-dark btn-sm">Enviar senha</button>
+            <button type="button" class="btn btn-dark btn-sm btn-cancelar-recovery">Cancelar</button>
+        </form>
+    </div>
+</div>  
+
+
 {% endblock %}
 
 {% block scripts %}
