@@ -38,27 +38,35 @@ class Login extends CI_Controller {
 
 	public function recuperar(){
 		$this->load->helper('string');
-		$this->load->helper('email');
-		$novaSenha = strtolower(random_string('alnum', 8));
+		$this->load->library('email');
+		$senhaTemporaria = strtolower(random_string('alnum', 8));
+		$linkRecuperacao =  BASE_URL . 'login/recuperar-acesso';
+		$mensagem = '<p>Se você não requisitou uma recuperação de senha, ignore essa mensagem.</p>';
+		$mensagem .= '<p>Senha de acesso: '. $senhaTemporaria . '</p>';
+		$mensagem .= "<p>Link para recuperar seu acesso: <a href='$linkRecuperacao' target='_blank'>$linkRecuperacao</a>";
 		$email = $this->input->post('email');
-
-		$config['smtp_host'] = getenv('EMAIL_HOST');
-        $config['smtp_user'] = getenv('EMAIL_USER');
-        $config['smtp_pass'] = getenv('EMAIL_PASS');
-        $config['smtp_port'] = getenv('EMAIL_PORT');
-        $config['protocol'] = 'smtp';
-        $config['mailtype'] = 'html';
-        $config['wordwrap'] = TRUE;
-		$config['charset'] = 'utf-8';
-
+		$config = Array(
+			'protocol' => 'smtp',
+			'smtp_host' => getenv('EMAIL_HOST'),
+			'smtp_port' => getenv('EMAIL_PORT'),
+			'smtp_user' => getenv('EMAIL_USER'),
+			'smtp_pass' => getenv('EMAIL_PASS'),
+			'crlf' => "\r\n",
+			'newline' => "\r\n",
+			'mailtype' => 'html',
+			'wordwrap' => TRUE,
+			'charset' => 'utf-8'
+		);		
         $this->email->initialize($config);
 		$this->email->from(getenv('EMAIL_FROM'), 'AACC - Fatec');
 		$this->email->to($email);
-		
-		$this->email->subject('Email Test');
-		$this->email->message('Testing the email class.');
-		
-		$this->email->send();		
+		$this->email->subject('Recuperação de senha');
+		$this->email->message($mensagem);
+		$data['sucesso'] = ($this->email->send() && $this->mod_usuario->setSenhaTemporaria($email, $senhaTemporaria)) ? true : false;
+		echo json_encode($data);
+	 }
 
-	}
+	 public function recuperarAcesso(){
+		 $this->load->view('login-recuperar');
+	 }
 }

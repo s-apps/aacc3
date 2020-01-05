@@ -169,4 +169,10 @@ class Mod_usuario extends CI_Model {
     }
     return false;
   }
+
+  public function setSenhaTemporaria($email, $senha){
+    $this->db->where('email', $email);
+    $this->db->set('senha_temp', password_hash($senha, PASSWORD_DEFAULT));
+    return $this->db->update('usuario');
+  }
 }
