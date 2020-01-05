@@ -75,6 +75,10 @@ a, a:focus, a:hover {
     display: none;
 }
 
+#totalHorasRealizadas {
+  display: none;
+}
+
 .erro-login {
   display: none;
 }

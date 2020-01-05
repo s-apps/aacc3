@@ -9,7 +9,7 @@
         <form id="frmLogin" name="frmLogin">
             <input type="hidden" id="acao" name="acao" value="entrar">
             <div class="form-group group-email">
-              <input type="text" class="form-control form-control-sm" id="email" name="email" placeholder="Email">
+              <input type="text" class="form-control form-control-sm" id="email" name="email" placeholder="Email" autofocus>
             </div>
             <div class="form-group group-senha">
               <input type="password" class="form-control form-control-sm" id="senha" name="senha" placeholder="Senha">
