@@ -5,6 +5,7 @@
 <div class="card login shadow-sm p-1 mb-5 bg-white" id="form-login">
     <div class="card-body">
       <div class="alert alert-danger w-100 pt-1 pb-1 text-center erro-login" role="alert"></div>
+      <div class="alert alert-success w-100 pt-1 pb-1 text-center sucesso-recuperar" role="alert"></div>
         <form id="frmLogin" name="frmLogin">
             <input type="hidden" id="acao" name="acao" value="entrar">
             <div class="form-group group-email">

@@ -5,13 +5,15 @@ var acao = document.querySelector('#acao');
 var inputEmail = document.querySelector('#email');
 var small = document.createElement('small');
 var erroLogin = document.querySelector('.erro-login');
+var sucessoRecuperar = document.querySelector('.sucesso-recuperar');
 var frmLogin = document.querySelector('#frmLogin');
 
 button.addEventListener('click', function(){
     erroLogin.style.display = 'none';
+    sucessoRecuperar.style.display = 'none';
     if(acao.value == 'entrar'){
         acao.value = 'recuperar';
-        this.textContent = 'Cancelar';
+        this.textContent = 'Login';
         groupSenha.style.display = 'none';
         submit.textContent = 'Enviar senha';
         small.classList.add('form-text', 'text-muted');
@@ -65,7 +67,20 @@ function enviarDados(usuario) {
 
     XHR.addEventListener('load', function(event) {
       var resposta = JSON.parse(XHR.responseText);
-      
+      if(usuario.acao == 'entrar'){
+        if(resposta.sucesso){
+            window.location.href = base_url + 'dashboard';
+        }else{
+            exibirErro('entrar');
+        }
+      }else{
+        if(resposta.sucesso){
+            sucessoRecuperar.style.display = 'inline-block';
+            sucessoRecuperar.textContent = 'Enviado com sucesso!';
+        }else{
+            exibirErro('recuperar');
+        }
+      }
     });
 
     XHR.addEventListener('error', function(event) {
