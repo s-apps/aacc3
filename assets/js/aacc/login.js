@@ -1,17 +1,34 @@
 var btnEntrarLoading = document.querySelector('.btn-login-loading');
 var frmLogin = document.querySelector('#frmLogin');
 var alerta = document.querySelector('.alert');
-var esqueceuSenha = document.querySelector('#esqueceuSenha');
-var btnCancelarRecovery = document.querySelector('.btn-cancelar-recovery');
-var form_login = document.querySelector('#form-login');
-var form_recovery = document.querySelector('#form-recovery');
-var inputEmail = document.querySelector('#email');
-
+var btnButton = document.querySelector('button[type=button]');
+var btnSubmit = document.querySelector('button[type=submit]');
 
 window.addEventListener('load', function(){
-    frmLogin.email.focus();
     desligarLoading();
     limparErros();
+});
+
+btnButton.addEventListener('click', function(event){
+    event.preventDefault();
+    var acao = this.getAttribute('data-acao');
+    if(acao == 'recuperar'){
+        this.textContent = 'Cancelar';
+        frmLogin.children[1].style.display = 'none';
+        this.setAttribute('data-acao', 'cancelar');
+        btnSubmit.textContent = 'Enviar nova senha';
+        var small = document.createElement('small');
+        small.classList.add('form-text', 'text-muted');
+        small.textContent = 'Informe o Email cadastrado no sistema.';
+        frmLogin.children[0].firstElementChild.insertAdjacentElement('afterend', small);
+    }else{
+        this.textContent = 'Esqueceu a senha?';
+        frmLogin.children[1].style.display = 'block';
+        this.setAttribute('data-acao', 'recuperar');
+        btnSubmit.textContent = 'Entrar';
+        frmLogin.children[0].firstElementChild.nextElementSibling.remove();
+    }
+    frmLogin.children[0].firstElementChild.focus();
 });
 
 frmLogin.addEventListener('submit', function(event){
@@ -27,16 +44,6 @@ frmLogin.addEventListener('submit', function(event){
     }else{
         exibirErro();
     }
-});
-
-esqueceuSenha.addEventListener('click', function(){
-    form_login.style.display = 'none';
-    form_recovery.style.display = 'inline-block';
-});
-
-btnCancelarRecovery.addEventListener('click', function(){
-    form_login.style.display = 'inline-block';
-    form_recovery.style.display = 'none';
 });
 
 function limparErros(){

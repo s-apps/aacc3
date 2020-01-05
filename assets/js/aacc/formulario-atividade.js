@@ -7,7 +7,7 @@ var $frmAtividade = $("#frmAtividade");
 // var segmentos = url.split('/');
 
 $(document).ready(function(){
-    if(! $usuario_id.length){
+    if($("#campo-usuario-id").length){
       $usuario_id.select2({
         placeholder: "Selecione o aluno",
         theme: "bootstrap",
