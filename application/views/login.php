@@ -6,6 +6,7 @@
     <div class="card-body">
       <div class="alert alert-danger w-100 pt-1 pb-1 text-center erro-login" role="alert"></div>
         <form id="frmLogin" name="frmLogin">
+            <input type="hidden" id="acao" name="acao" value="login">
             <div class="form-group">
               <input type="text" class="form-control form-control-sm" id="email" name="email" placeholder="Email">
             </div>

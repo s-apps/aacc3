@@ -4,7 +4,7 @@ $("#frmCurso").on("submit", function(event){
     var curso = $("#curso").val();
     var curso_id = $("#curso_id").val();
     if(curso.length === 0){
-        exibirMensagem("Atenção!", " Informe a curso");
+        exibirMensagem("Atenção!", " Informe o curso");
         $("#curso").focus();
     }else{
         $.post({

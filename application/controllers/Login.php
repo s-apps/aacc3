@@ -35,4 +35,30 @@ class Login extends CI_Controller {
 		setSessao($sessao);
 		return usuarioLogado();
 	}
+
+	public function recuperar(){
+		$this->load->helper('string');
+		$this->load->helper('email');
+		$novaSenha = strtolower(random_string('alnum', 8));
+		$email = $this->input->post('email');
+
+		$config['smtp_host'] = getenv('EMAIL_HOST');
+        $config['smtp_user'] = getenv('EMAIL_USER');
+        $config['smtp_pass'] = getenv('EMAIL_PASS');
+        $config['smtp_port'] = getenv('EMAIL_PORT');
+        $config['protocol'] = 'smtp';
+        $config['mailtype'] = 'html';
+        $config['wordwrap'] = TRUE;
+		$config['charset'] = 'utf-8';
+
+        $this->email->initialize($config);
+		$this->email->from(getenv('EMAIL_FROM'), 'AACC - Fatec');
+		$this->email->to($email);
+		
+		$this->email->subject('Email Test');
+		$this->email->message('Testing the email class.');
+		
+		$this->email->send();		
+
+	}
 }
