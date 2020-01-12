@@ -61,7 +61,7 @@ function excluir(){
         data: { usuario_ids: usuario_ids }
     })
     .done(function(data){
-        if(data.sucesso){
+        if(data.erro.length === 0){
             $table.bootstrapTable("remove", {
                 field: "usuario_id",
                 values: usuario_ids

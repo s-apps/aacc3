@@ -92,28 +92,32 @@ class Atividade extends CI_Controller {
         // $imagem_comprovante = $_FILES['imagem_comprovante']['name'];
         // var_dump($imagem_comprovante);
         // exit;
-        $data['erro'] = '';
 
-        if($atividade['acao'] == 'adicionando'){
-          if(!$this->upload->do_upload('imagem_comprovante')){
-            $data['erro'] = $this->upload->display_errors();
-          }else{
-            $imagem_comprovante = $this->upload->data('file_name');
-            $atividade = array_merge($atividade, array('imagem_comprovante' => $imagem_comprovante));
-            $data['erro'] = $this->mod_atividade->salvar($atividade);
-          }
-        }else{
-          $imagem_comprovante = $_FILES['imagem_comprovante']['name'];
-          if(!empty($imagem_comprovante)){
-            if(!$this->upload->do_upload('imagem_comprovante')){
-              $data['erro'] = $this->upload->display_errors();
+        // if(!$this->upload->do_upload('imagem_comprovante')){
+        //     if($atividade['acao'] == 'adicionar'){
+        //         $data['erro'] = $this->upload->display_errors();
+        //     }else{
+        //         $imagem_comprovante = $this->upload->data('file_name');
+        //     }
+        // }else{
+        //     $imagem_comprovante = $this->upload->data('file_name');
+        //     $atividade = array_merge($atividade, array('imagem_comprovante' => $imagem_comprovante));
+        //     $data['erro'] = $this->mod_atividade->salvar($atividade);
+        // }
+        $imagem_comprovante_enviada = $_FILES['imagem_comprovante']['name'];
+
+        if(! $this->upload->do_upload('imagem_comprovante')){
+            if($atividade['acao'] == 'adicionando'){
+                $data['erro'] = $this->upload->display_errors();
             }else{
-              $imagem_comprovante = $this->upload->data('file_name');
-              $atividade = array_merge($atividade, array('imagem_comprovante' => $imagem_comprovante));
-              $data['erro'] = $this->mod_atividade->salvar($atividade);
+                if(! empty($imagem_comprovante_enviada)){
+                    $data['erro'] = $this->upload->display_errors();
+                }
             }
-          }
         }
+        $imagem_comprovante = (! empty($imagem_comprovante_enviada) ? $this->upload->data('file_name') : $this->mod_atividade->getImagemComprovante($atividade['atividade_id']));
+        $atividade = array_merge($atividade, array('imagem_comprovante' => $imagem_comprovante));
+        $data['erro'] = $this->mod_atividade->salvar($atividade);
         echo json_encode($data);
     }
 

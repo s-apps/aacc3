@@ -74,4 +74,10 @@ class Mod_atividade extends CI_Model {
         }
         return $sucesso;
     }
+
+    public function getImagemComprovante($atividade_id){
+        $this->db->select('imagem_comprovante');
+        $this->db->where('atividade_id', $atividade_id);
+        return $this->db->get('atividade')->row('imagem_comprovante');
+    }
 }

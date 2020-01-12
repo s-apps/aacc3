@@ -153,21 +153,25 @@ class Mod_usuario extends CI_Model {
   }
 
   public function excluir($usuario_ids){
-    $this->db->trans_begin();
-
-    $this->db->where_in('usuario_id', $usuario_ids);
-    $this->db->delete('usuario');
-    $this->db->where_in('professor_id', $usuario_ids);
-    $this->db->delete('professor_leciona');
-
-    $this->db->trans_complete();
-    if($this->db->trans_status()){
-      $this->db->trans_commit();
-      return true;
+    if(in_array("1", $usuario_ids) && USUARIO_NIVEL == 0){
+      return 'O usuário admin não pode ser excluído';
     }else{
-      $this->db->trans_rollback();
+      $this->db->trans_begin();
+
+      $this->db->where_in('usuario_id', $usuario_ids);
+      $this->db->delete('usuario');
+      $this->db->where_in('professor_id', $usuario_ids);
+      $this->db->delete('professor_leciona');
+
+      $this->db->trans_complete();
+      if($this->db->trans_status()){
+        $this->db->trans_commit();
+        return '';
+      }else{
+        $this->db->trans_rollback();
+      }
+      return 'Ocorreu um erro excluindo professor';
     }
-    return false;
   }
 
   public function setSenhaTemporaria($email, $senha){

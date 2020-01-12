@@ -118,6 +118,7 @@
                     </div>
                 </div>
             </div>
+            {% if constant('USUARIO_NIVEL') == 0 %}
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="validacao">Validação</label>
@@ -127,6 +128,9 @@
                     </select>
                 </div>
             </div>
+            {% else %}
+            <input type="hidden" id="validacao" name="validacao" value="0">
+            {% endif %}
         </div>
         <div class="card-footer">
             <button type="submit" class="btn btn-secondary btn-sm"><i class="fas fa-save"></i> Salvar</button>

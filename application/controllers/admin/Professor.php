@@ -63,7 +63,7 @@ class Professor extends CI_Controller {
 
     public function excluir(){
         $usuario_ids = $this->input->post('usuario_ids');
-        $data['sucesso'] = $this->mod_usuario->excluir($usuario_ids);
+        $data['erro'] = $this->mod_usuario->excluir($usuario_ids);
         echo json_encode($data);
     }
 
