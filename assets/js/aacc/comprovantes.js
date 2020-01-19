@@ -41,7 +41,15 @@ $(document).ready(function(){
     });
 });//document ready
 
+$("#btn-adicionar").on("click", function(){
+    $botao = $("#btn-adicionar");
+    ligarLoading($botao);
+    window.location.href = base_url + "admin/comprovante/adicionar";
+});
+
 $("#btn-editar").on("click", function(){
+    $botao = $("#btn-editar");
+    ligarLoading($botao);
     var comprovante_id = getSelections();
     window.location.href = base_url + "admin/comprovante/editar/" + comprovante_id[0];
 });

@@ -25,6 +25,8 @@ $("#frmAluno").on("submit", function(event){
         $.each(usuario, function(key, campo){
             data.append(key, campo);
         });
+        var $botao = $("#btn-salvar");
+        ligarLoading($botao);
         $.post({
             url: base_url + "admin/aluno/salvar",
             dataType: "JSON",
@@ -36,6 +38,7 @@ $("#frmAluno").on("submit", function(event){
                 if(data.erro.length === 0){
                     window.location.href = base_url + "admin/aluno";
                 }else{
+                    desligarLoading($botao);
                     exibirMensagem("Atenção!", data.erro);
                 }
             }
@@ -74,3 +77,9 @@ function camposValidos(usuario){
         return true;
     }
 }
+
+$("#btn-cancelar").on("click", function(){
+    var $botao = $("#btn-cancelar");
+    ligarLoading($botao);
+    window.location.href = base_url + "admin/aluno";
+});

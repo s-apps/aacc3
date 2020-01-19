@@ -17,6 +17,8 @@ $("#frmProfessor").on("submit", function(event){
         $.each(usuario, function(key, campo){
             data.append(key, campo);
         });
+        var $botao = $("#btn-salvar");
+        ligarLoading($botao);
         $.post({
             url: base_url + "admin/professor/salvar",
             dataType: "JSON",
@@ -28,6 +30,7 @@ $("#frmProfessor").on("submit", function(event){
                 if(data.erro.length === 0){
                     window.location.href = base_url + "admin/professor";
                 }else{
+                    desligarLoading($botao);
                     exibirMensagem("Atenção!", data.erro);
                 }
             }
@@ -63,3 +66,10 @@ $("#curso_id").on("select2:unselect", function (e) {
     //console.log("select2:unselect", e);
     console.log($("#curso_id").val());
 });
+
+$("#btn-cancelar").on("click", function(){
+    var $botao = $("#btn-cancelar");
+    ligarLoading($botao);
+    window.location.href = base_url + "admin/professor";
+});
+

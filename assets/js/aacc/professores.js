@@ -42,7 +42,15 @@ $(document).ready(function(){
     });
 });//document ready
 
+$("#btn-adicionar").on("click", function(){
+    var $botao = $("#btn-adicionar");
+    ligarLoading($botao);
+    window.location.href = base_url + "admin/professor/adicionar";
+});
+
 $("#btn-editar").on("click", function(){
+    var $botao = $("#btn-editar");
+    ligarLoading($botao);
     var usuario_id = getSelections();
     window.location.href = base_url + "admin/professor/editar/" + usuario_id[0];
 });

@@ -130,6 +130,8 @@ $frmAtividade.on("submit", function(event){
         $.each(atividade, function(key, item){
             data.append(key, item);
         });
+        var $botao = $("#btn-salvar");
+        ligarLoading($botao);
         $.post({
             url: base_url + "atividade/salvar",
             dataType: "JSON",
@@ -141,6 +143,7 @@ $frmAtividade.on("submit", function(event){
                 if(data.erro.length === 0){
                     window.location.href = base_url + "atividade";
                 }else{
+                    desligarLoading($botao);
                     exibirMensagem("Atenção!", data.erro);
                 }
             }
@@ -208,3 +211,9 @@ function horasInicioMaiorHorasTermino(horas_inicio, horas_termino){
     var horasTermino = (split2[0] * 60) + parseInt(split2[1]);
     return horasInicio >= horasTermino;
 }
+
+$("#btn-cancelar").on("click", function(){
+    var $botao = $("#btn-cancelar");
+    ligarLoading($botao);
+    window.location.href = base_url + "atividade";
+});

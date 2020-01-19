@@ -7,6 +7,8 @@ $("#frmCurso").on("submit", function(event){
         exibirMensagem("Atenção!", " Informe o curso");
         $("#curso").focus();
     }else{
+        var $botao = $("#btn-salvar");
+        ligarLoading($botao);
         $.post({
             url: base_url + "admin/curso/salvar",
             dataType: "JSON",
@@ -16,8 +18,15 @@ $("#frmCurso").on("submit", function(event){
             if(data.erro.length === 0){
                 window.location.href = base_url + "admin/curso"
             }else{
+                desligarLoading($botao);
                 exibirMensagem("Atenção!", data.erro);
             }
         });
     }
+});
+
+$("#btn-cancelar").on("click", function(){
+    var $botao = $("#btn-cancelar");
+    ligarLoading($botao);
+    window.location.href = base_url + "admin/curso";
 });

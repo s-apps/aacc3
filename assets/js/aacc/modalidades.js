@@ -41,7 +41,15 @@ $(document).ready(function(){
     });
 });//document ready
 
+$("#btn-adicionar").on("click", function(){
+    var $botao = $("#btn-adicionar");
+    ligarLoading($botao);
+    window.location.href = base_url + "admin/modalidade/adicionar";
+});
+
 $("#btn-editar").on("click", function(){
+    var $botao = $("#btn-editar");
+    ligarLoading($botao);
     var modalidade_id = getSelections();
     window.location.href = base_url + "admin/modalidade/editar/" + modalidade_id[0];
 });

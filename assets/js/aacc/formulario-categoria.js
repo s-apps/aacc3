@@ -18,7 +18,6 @@ $("#frmCategoria").on("submit", function(event){
             if(data.erro.length === 0){
                 window.location.href = base_url + "admin/categoria"
             }else{
-                $botao = $("#btn-salvar");
                 desligarLoading($botao);
                 exibirMensagem("Atenção!", data.erro);
             }

@@ -45,7 +45,15 @@ $(document).ready(function(){
     });
 });
 
+$("#btn-adicionar").on("click", function(){
+    var $botao = $("#btn-adicionar");
+    ligarLoading($botao);
+    window.location.href = base_url + "atividade/adicionar";
+});
+
 $("#btn-editar").on("click", function(){
+    var $botao = $("#btn-editar");
+    ligarLoading($botao);
     var atividade_id = getSelections();
     window.location.href = base_url + "atividade/editar/" + atividade_id[0];
 });

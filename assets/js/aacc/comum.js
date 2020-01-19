@@ -63,7 +63,5 @@ function ligarLoading($botao){
 }
 
 function desligarLoading($botao){
-    //console.log($botao);
-    // console.log($botao[0].children[1]);
     $botao[0].children[1].remove();
 }
