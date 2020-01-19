@@ -7,6 +7,8 @@ $("#frmCategoria").on("submit", function(event){
         exibirMensagem("Atenção!", " Informe a categoria");
         $("#categoria").focus();
     }else{
+        var $botao = $("#btn-salvar");
+        ligarLoading($botao);
         $.post({
             url: base_url + "admin/categoria/salvar",
             dataType: "JSON",
@@ -16,8 +18,16 @@ $("#frmCategoria").on("submit", function(event){
             if(data.erro.length === 0){
                 window.location.href = base_url + "admin/categoria"
             }else{
+                $botao = $("#btn-salvar");
+                desligarLoading($botao);
                 exibirMensagem("Atenção!", data.erro);
             }
         });
     }
+});
+
+$("#btn-cancelar").on("click", function(){
+    var $botao = $("#btn-cancelar");
+    ligarLoading($botao);
+    window.location.href = base_url + "admin/categoria";
 });

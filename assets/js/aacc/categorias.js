@@ -41,7 +41,15 @@ $(document).ready(function(){
     });
 });//document ready
 
+$("#btn-adicionar").on("click", function(){
+    var $botao = $("#btn-adicionar");
+    ligarLoading($botao);
+    window.location.href = base_url + "admin/categoria/adicionar";
+});
+
 $("#btn-editar").on("click", function(){
+    var $botao = $("#btn-editar");
+    ligarLoading($botao);
     var categoria_id = getSelections();
     window.location.href = base_url + "admin/categoria/editar/" + categoria_id[0];
 });

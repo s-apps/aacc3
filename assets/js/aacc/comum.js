@@ -54,3 +54,16 @@ function exibirMensagemDeConfirmacao(titulo, mensagem){
         }
     });
 }
+
+function ligarLoading($botao){
+    var loading = `${ $botao.html() } <div class="spinner-border spinner-border-sm text-light" role="status" id="btn-loading">
+        <span class="sr-only">Carregando...</span>
+    </div>`;
+    $botao.html(loading);
+}
+
+function desligarLoading($botao){
+    //console.log($botao);
+    // console.log($botao[0].children[1]);
+    $botao[0].children[1].remove();
+}

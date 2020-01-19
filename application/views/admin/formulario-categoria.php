@@ -17,8 +17,8 @@
             </div>
         </div>
         <div class="card-footer">
-            <button type="submit" class="btn btn-secondary btn-sm"><i class="fas fa-save"></i> Salvar</button>
-            <a href="{{ constant('BASE_URL') }}admin/categoria" class="btn btn-secondary btn-sm"><i class="fas fa-undo"></i> Cancelar</a>
+            <button type="submit" class="btn btn-secondary btn-sm" id="btn-salvar"><i class="fas fa-save"></i> Salvar</button>
+            <button type="button" class="btn btn-secondary btn-sm" id="btn-cancelar"><i class="fas fa-undo"></i> Cancelar</a>
         </div>
     </form>
 </div>            
