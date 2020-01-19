@@ -22,8 +22,9 @@ function exibirMensagem(titulo, mensagem){
         position: "center",
         timeout: 0,
         animateInside: false,
+        closeOnEscape: true,
         buttons: [
-            ["<button><b>OK</b></button>", function (instance, toast, button, e, inputs) {
+            ["<button><b>FECHAR (ESC)</b></button>", function (instance, toast, button, e, inputs) {
                 instance.hide({ transitionOut: "fadeOut" }, toast, "button");
             }, false], // true to focus
         ]
@@ -37,11 +38,12 @@ function exibirMensagemDeConfirmacao(titulo, mensagem){
         position: "center",
         timeout: 0,
         animateInside: false,
+        closeOnEscape: true,
         buttons: [
             ["<button><b>Excluir</b></button>", function (instance, toast, button, e, inputs) {
                 instance.hide({ transitionOut: "fadeOut" }, toast, "buttonExcluir");
             }, false], // true to focus
-            ["<button><b>Cancelar</b></button>", function (instance, toast, button, e, inputs) {
+            ["<button><b>Cancelar (ESC)</b></button>", function (instance, toast, button, e, inputs) {
                 instance.hide({ transitionOut: "fadeOut" }, toast, "buttonCancelar");
             }, false] // true to focus
         ],

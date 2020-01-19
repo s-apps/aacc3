@@ -29,12 +29,13 @@ $(document).ready(function(){
 
 $("#usuario_id").on("select2:select", function (e) {
   var data = e.params.data;
+  var validacao = ($("input[type=checkbox]").prop("checked")) ? 0 : 1;
   //    console.log(data);
   //    console.log(data.id);
   $.post({
     url: base_url + "admin/aluno/getTotalHorasRealizadas",
     dataType: "JSON",
-    data: { usuario_id: data.id }
+    data: { usuario_id: data.id, validacao: validacao }
   })
   .done(function(data){
     $table.bootstrapTable("removeAll");

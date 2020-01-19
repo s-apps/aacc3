@@ -62,7 +62,15 @@ class Login extends CI_Controller {
 		$this->email->to($email);
 		$this->email->subject('Recuperação de senha');
 		$this->email->message($mensagem);
-		$data['sucesso'] = ($this->email->send() && $this->mod_usuario->setSenhaTemporaria($email, $senhaTemporaria)) ? true : false;
+		if($this->mod_usuario->emailExiste($email)){
+			if($this->mod_usuario->setSenhaTemporaria($email, $senhaTemporaria)){
+				if($this->email->send()){
+					$data['sucesso'] = true;
+				}
+			}
+		}else{
+			$data['sucesso'] = false;
+		}
 		echo json_encode($data);
 	 }
 

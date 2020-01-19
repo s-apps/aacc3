@@ -35,8 +35,9 @@ class Mod_usuario extends CI_Model {
     return $this->db->get('usuario')->row_array();
   }
 
-  public function getTotalHorasRealizadas($usuario_id){
+  public function getTotalHorasRealizadas($usuario_id, $validacao){
     $this->db->where('usuario_id', $usuario_id);
+    $this->db->where('validacao', intval($validacao));
     $atividades = $this->db->get('atividade')->result_array();
     $horas = [];
     foreach($atividades as &$atividade){
@@ -178,5 +179,10 @@ class Mod_usuario extends CI_Model {
     $this->db->where('email', $email);
     $this->db->set('senha_temp', password_hash($senha, PASSWORD_DEFAULT));
     return $this->db->update('usuario');
+  }
+
+  public function emailExiste($email){
+    $this->db->where('email', $email);
+    return $this->db->get('usuario')->result_array();
   }
 }

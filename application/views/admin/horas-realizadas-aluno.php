@@ -6,6 +6,10 @@
   <div class="card-body">
     <h5 class="card-title"><i class="fas fa-clock"></i> Aluno - Horas realizadas</h5>
     <hr>
+    <div class="custom-control custom-checkbox mb-3">
+      <input type="checkbox" class="custom-control-input" id="validacao" value="1">
+      <label class="custom-control-label" for="validacao">Incluir atividades com validação em andamento</label>
+    </div>
     <div class="row">
       <div class="col-6">
         <label for="usuario_ra">Aluno</label>

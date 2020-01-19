@@ -36,6 +36,7 @@
   </div>
 </div>
 
+{% if constant('USUARIO_NIVEL') == 0 %}
 <!-- Modal -->
 <div class="modal fade" id="formulario-avisos" tabindex="-1" role="dialog" aria-labelledby="avisosLabel" aria-hidden="true">
   <form id="formulario-avisos" name="formulario-avisos" method="POST">
@@ -76,6 +77,7 @@
   </div>
 </form>
 </div>
+{% endif %}
 {% endblock %}
 
 {% block scripts %}
