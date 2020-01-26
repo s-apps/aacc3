@@ -62,11 +62,6 @@ function camposValidos(usuario){
     }
 }
 
-$("#curso_id").on("select2:unselect", function (e) {
-    //console.log("select2:unselect", e);
-    console.log($("#curso_id").val());
-});
-
 $("#btn-cancelar").on("click", function(){
     var $botao = $("#btn-cancelar");
     ligarLoading($botao);

@@ -3,8 +3,6 @@ var $categoria_id = $("#categoria_id");
 var $modalidade_id = $("#modalidade_id");
 var $comprovante_id = $("#comprovante_id");
 var $frmAtividade = $("#frmAtividade");
-// var url = window.location.href;
-// var segmentos = url.split('/');
 
 $(document).ready(function(){
     if($("#campo-usuario-id").length){
