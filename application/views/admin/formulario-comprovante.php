@@ -12,7 +12,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="comprovante">Comprovante</label>
-                    <input type="text" class="form-control form-control-sm" id="comprovante" name="comprovante" autofocus value="{% if acao == 'editando' and comprovante.comprovante is defined %}{{ comprovante.comprovante }}{% endif %}">
+                    <textarea class="form-control" id="comprovante" name="comprovante" rows="3" autofocus>{% if acao == 'editando' and comprovante.comprovante is defined %}{{ comprovante.comprovante }}{% endif %}</textarea>
                 </div>
             </div>
         </div>

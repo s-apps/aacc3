@@ -39,6 +39,12 @@ function exibirMensagemDeConfirmacao(titulo, mensagem){
         timeout: 0,
         animateInside: false,
         closeOnEscape: true,
+        overlay: true,
+        zindex: 9999,
+        transitionIn: "fadeIn",
+        transitionOut: "fadeOut",
+        transitionInMobile: "fadeInUp",
+        transitionOutMobile: "fadeOutDown",
         buttons: [
             ["<button><b>Excluir</b></button>", function (instance, toast, button, e, inputs) {
                 instance.hide({ transitionOut: "fadeOut" }, toast, "buttonExcluir");

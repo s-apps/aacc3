@@ -12,7 +12,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="categoria">Categoria</label>
-                    <input type="text" class="form-control form-control-sm" id="categoria" name="categoria" autofocus value="{% if acao == 'editando' and categoria.categoria is defined %}{{ categoria.categoria }}{% endif %}">
+                    <textarea class="form-control" id="categoria" name="categoria" rows="3" autofocus>{% if acao == 'editando' and categoria.categoria is defined %}{{ categoria.categoria }}{% endif %}</textarea>
                 </div>
             </div>
         </div>

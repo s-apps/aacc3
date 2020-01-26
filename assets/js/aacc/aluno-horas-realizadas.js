@@ -13,7 +13,8 @@ $(document).ready(function(){
       {field: "atividade", title: "Atividade"},
       {field: "horas_inicio", title: "Início"},
       {field: "horas_termino", title: "Término"},
-      {field: "carga_horaria", title: "Carga horária"}
+      {field: "carga_horaria", title: "Carga horária"},
+      {field: "validacao", title: "Validação"}
     ]
   });
   $("#usuario_id").select2({
@@ -29,13 +30,13 @@ $(document).ready(function(){
 
 $("#usuario_id").on("select2:select", function (e) {
   var data = e.params.data;
-  var validacao = ($("input[type=checkbox]").prop("checked")) ? 0 : 1;
+  var incluirEmAndamento = ($("input[type=checkbox]").prop("checked")) ? 0 : 1;
   //    console.log(data);
-  //    console.log(data.id);
+  //console.log(data.id);
   $.post({
     url: base_url + "admin/aluno/getTotalHorasRealizadas",
     dataType: "JSON",
-    data: { usuario_id: data.id, validacao: validacao }
+    data: { usuario_id: data.id, incluirEmAndamento }
   })
   .done(function(data){
     $table.bootstrapTable("removeAll");
@@ -52,7 +53,8 @@ $("#usuario_id").on("select2:select", function (e) {
           atividade: atividade.atividade,
           horas_inicio: atividade.horas_inicio,
           horas_termino: atividade.horas_termino,
-          carga_horaria: atividade.carga_horaria
+          carga_horaria: atividade.carga_horaria,
+          validacao: atividade.validacao
         }
       });
     });

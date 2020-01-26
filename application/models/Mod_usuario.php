@@ -35,16 +35,17 @@ class Mod_usuario extends CI_Model {
     return $this->db->get('usuario')->row_array();
   }
 
-  public function getTotalHorasRealizadas($usuario_id, $validacao){
+  public function getTotalHorasRealizadas($usuario_id, $incluirEmAndamento){
     $this->db->where('usuario_id', $usuario_id);
-    $this->db->where('validacao', intval($validacao));
+    if(! intval($incluirEmAndamento) == 0){
+      $this->db->where('validacao', 1);
+    }
     $atividades = $this->db->get('atividade')->result_array();
-    $horas = [];
     foreach($atividades as &$atividade){
       $atividade['data'] = mysqlParaView($atividade['data']);
-      // $horas[] = $atividade['carga_horaria'];
+      $atividade['atividade'] = '<a href="' . BASE_URL . 'atividade/editar/' . $atividade['atividade_id'] . '">' . $atividade['atividade'] . '</a>';
+      $atividade['validacao'] = ($atividade['validacao']) ? 'Válido' : 'Aguardando validação';
     }
-    // $atividades = array_merge($atividades, array('totalHorasRealizadas' => getTotalHorasRealizadas($horas)));
     return $atividades;
   }
 
@@ -158,12 +159,10 @@ class Mod_usuario extends CI_Model {
       return 'O usuário admin não pode ser excluído';
     }else{
       $this->db->trans_begin();
-
       $this->db->where_in('usuario_id', $usuario_ids);
       $this->db->delete('usuario');
       $this->db->where_in('professor_id', $usuario_ids);
       $this->db->delete('professor_leciona');
-
       $this->db->trans_complete();
       if($this->db->trans_status()){
         $this->db->trans_commit();

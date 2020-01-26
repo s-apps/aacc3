@@ -76,8 +76,8 @@ class Aluno extends CI_Controller {
 
   public function getTotalHorasRealizadas(){
     $usuario_id = $this->input->post('usuario_id');
-    $validacao = $this->input->post('validacao');
-    $data['horasRealizadas'] = $this->mod_usuario->getTotalHorasRealizadas($usuario_id, $validacao);
+    $incluirEmAndamento = $this->input->post('incluirEmAndamento');
+    $data['horasRealizadas'] = $this->mod_usuario->getTotalHorasRealizadas($usuario_id, $incluirEmAndamento);
     echo json_encode($data);
   }
 }

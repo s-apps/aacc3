@@ -81,7 +81,7 @@ class Atividade extends CI_Controller {
         );
 
         $config['upload_path'] = './assets/img/comprovantes/';
-        $config['allowed_types'] = 'gif|jpg|png|pdf';
+        $config['allowed_types'] = 'jpg|png|pdf';
         $config['max_size'] = 1024;
         $config['max_width'] = 0;
         $config['max_height'] = 0;

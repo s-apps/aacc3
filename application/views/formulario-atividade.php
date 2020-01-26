@@ -11,7 +11,7 @@
             <hr>
             <div class="form-row">
                 <div class="form-group col-md-2">
-                    <label for="data_atividade">Data</label>
+                    <label for="data_atividade">Data da atividade</label>
                     <div class="input-group date" id="dataatividade" data-target-input="nearest">
                         <input type="text" class="form-control form-control-sm datetimepicker-input" data-target="#dataatividade" id="data_atividade" name="data_atividade" value="{% if acao == 'editando' and atividade.data is defined %}{{ atividade.data }}{% endif %}"/>
                         <div class="input-group-append" data-target="#dataatividade" data-toggle="datetimepicker">
@@ -104,7 +104,7 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label for="imagem_comprovante">Imagem do comprovante</label>
+                  <label for="imagem_comprovante">Imagem do comprovante (JPG, PNG, PDF, máx: 1MB)</label>
                     <div class="input-group">
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="imagem_comprovante" name="imagem_comprovante">
@@ -121,7 +121,7 @@
             {% if constant('USUARIO_NIVEL') == 0 %}
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="validacao">Validação</label>
+                    <label for="validacao">Situação</label>
                     <select class="custom-select custom-select-sm" id="validacao" name="validacao">
                         <option value="0"{% if atividade.validacao == 0 and acao == 'editando' %} selected="selected"{% endif %}>Aguardando validação</option>
                         <option value="1"{% if atividade.validacao == 1 and acao == 'editando' %} selected="selected"{% endif %}>Válido</option>

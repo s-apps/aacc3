@@ -66,6 +66,8 @@ function enviarDados(usuario) {
     }
 
     XHR.addEventListener('load', function(event) {
+      erroLogin.style.display = 'none';
+      sucessoRecuperar.style.display = 'none';
       var resposta = JSON.parse(XHR.responseText);
       if(usuario.acao == 'entrar'){
         if(resposta.sucesso){
