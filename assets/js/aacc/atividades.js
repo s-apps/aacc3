@@ -31,7 +31,8 @@ $(document).ready(function(){
             { field: "atividade", title: "Atividade", sortable: true },
             { field: "usuario_ra", title: "RA", sortable: true },
             { field: "nome", title: "Aluno", sortable: true },
-            { field: "email", title: "Email", sortable: true }
+            { field: "email", title: "Email", sortable: true },
+            { field: "validacao", title: "Situação", sortable: true, formatter: setTextoSituacao }
         ],
         responseHandler: function ( data ) {
             return {
@@ -44,6 +45,10 @@ $(document).ready(function(){
         }
     });
 });
+
+function setTextoSituacao(index, row){
+    return (row.validacao == 0) ? '<span class="text-danger">Aguardado validação</span>' : '<span class="text-success">Válido</span>';
+}
 
 $("#btn-adicionar").on("click", function(){
     var $botao = $("#btn-adicionar");
