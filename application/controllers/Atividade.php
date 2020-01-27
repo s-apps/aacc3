@@ -64,6 +64,12 @@ class Atividade extends CI_Controller {
         echo json_encode($data);
     }
 
+    public function getCargaHoraria(){
+        $horas_inicio = $this->input->get('horas_inicio');
+        $horas_termino = $this->input->get('horas_termino');
+        echo json_encode('<strong>' . getCargaHoraria($horas_inicio, $horas_termino) . '</strong>');
+    }
+
     public function salvar(){
         $config['upload_path'] = './assets/img/comprovantes/';
         $config['allowed_types'] = 'jpg|png|pdf';

@@ -37,6 +37,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-group col-md-4">
+                    <button type="button" class="btn btn-link btn-sm mt-4" id="btn-cargahoraria">Visualizar Carga Horária <i class="fas fa-external-link-alt"></i></button>
+                </div>
             </div>
 
             {% if constant('USUARIO_NIVEL') == 0 %}
@@ -90,6 +93,9 @@
                         {% endif %}
                     </select>
                 </div>
+                <div class="form-group col-md-4">
+                    <button type="button" class="btn btn-link btn-sm mt-4" id="btn-limitesmodalidade">Visualizar Limites de Horas da Modalidade <i class="fas fa-external-link-alt"></i></button>
+                </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
@@ -139,7 +145,7 @@
     </form>
 </div>
 <div class="modal" tabindex="-1" role="dialog" id="midia">
-	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
 	    <div class="modal-content">
 	        <div class="modal-header">
         	    <h5 class="modal-title">Imagem do comprovante</h5>

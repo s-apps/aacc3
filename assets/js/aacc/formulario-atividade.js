@@ -60,7 +60,7 @@ $categoria_id.on("change", function(){
     $.get({
         url: base_url + "atividade/getModalidadesByCategoria",
         dataType: "JSON",
-        data: { categoria_id: categoria_id }
+        data: { categoria_id }
     })
     .done(function(data){
         var modalidades = [];
@@ -87,7 +87,7 @@ function getComprovantesByModalidade(modalidade_id){
     $.get({
         url: base_url + "atividade/getComprovantesByModalidade",
         dataType: "JSON",
-        data: { modalidade_id: modalidade_id }
+        data: { modalidade_id }
     })
     .done(function(data){
         var comprovantes = [];
@@ -214,4 +214,41 @@ $("#btn-cancelar").on("click", function(){
     var $botao = $("#btn-cancelar");
     ligarLoading($botao);
     window.location.href = base_url + "atividade";
+});
+
+$("#btn-cargahoraria").on("click", function(){
+    var horas_inicio = $("#horas_inicio").val();
+    var horas_termino = $("#horas_termino").val();
+    if(horas_inicio.length != 0 || horas_termino.length != 0){
+        $.get({
+            url: base_url + "atividade/getCargaHoraria",
+            dataType: "JSON",
+            data: { horas_inicio, horas_termino }
+        })
+        .done(function(data){
+            exibirMensagem("Carga Horária", data);
+            return false;
+        });        
+    }else{
+        exibirMensagem("Atenção!", "Informe Horas do início e Horas do término");
+        return false;
+    }
+});
+
+$("#btn-limitesmodalidade").on("click", function(){
+    var modalidade_id = $("#modalidade_id").val();
+    if(modalidade_id.length != 0){
+        $.get({
+            url: base_url + "admin/modalidade/getLimitesDaModalidade",
+            dataType: "JSON",
+            data: { modalidade_id }
+        })
+        .done(function(data){
+            exibirMensagem("Limites:", "mínimo em horas: <strong>" + data.limites.min_horas + "</strong> | máximo em horas: <strong>" + data.limites.max_horas + "</strong>");
+            return false;
+        });
+    }else{
+        exibirMensagem("Atenção!", "Primeiro, selecione uma Categoria para carregar Modalidades");
+        return false;
+    }
 });

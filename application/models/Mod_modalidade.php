@@ -18,6 +18,12 @@ class Mod_modalidade extends CI_Model {
         return $this->db->get('modalidade')->result_array();
     }
 
+    public function getLimitesDaModalidade($modalidade_id){
+        $this->db->select('min_horas, max_horas');
+        $this->db->where('modalidade_id', $modalidade_id);
+        return $this->db->get('modalidade')->row_array();
+    }
+
     public function getComprovantesByModalidade($modalidade_id){
         $this->db->join('comprovante', 'comprovante.comprovante_id = modalidade.comprovante_id');
         $this->db->where('modalidade_id', $modalidade_id);

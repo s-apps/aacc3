@@ -28,3 +28,14 @@
       // returns the time already formatted
       return sprintf('%02d:%02d', $hours, $minutes);
     }
+
+    function dentroDosLimitesDaModalidade($limitesDaModalidade, $carga_horaria){
+        date_default_timezone_set('America/Sao_Paulo');
+        $min_horas = strtotime($limitesDaModalidade['min_horas']);
+        $max_horas = strtotime($limitesDaModalidade['max_horas']);
+        $carga_horaria_total = strtotime($carga_horaria);
+        if($carga_horaria_total > $max_horas || $carga_horaria_total < $min_horas){
+            return false;
+        }
+        return true;
+    }
