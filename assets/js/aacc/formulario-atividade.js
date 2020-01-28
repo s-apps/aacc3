@@ -226,7 +226,7 @@ $("#btn-cargahoraria").on("click", function(){
             data: { horas_inicio, horas_termino }
         })
         .done(function(data){
-            exibirMensagem("Carga Horária", data);
+            exibirMensagem("Carga Horária:", data);
             return false;
         });        
     }else{
@@ -239,7 +239,7 @@ $("#btn-limitesmodalidade").on("click", function(){
     var modalidade_id = $("#modalidade_id").val();
     if(modalidade_id.length != 0){
         $.get({
-            url: base_url + "admin/modalidade/getLimitesDaModalidade",
+            url: base_url + "atividade/getLimitesDaModalidade",
             dataType: "JSON",
             data: { modalidade_id }
         })

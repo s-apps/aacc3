@@ -125,4 +125,13 @@ class Atividade extends CI_Controller {
         $data['sucesso'] = $this->mod_atividade->excluir($atividade_ids);
         echo json_encode($data);
     }
+
+    public function getLimitesDaModalidade(){
+        $modalidade_id = $this->input->get('modalidade_id');
+        $data['limites'] = $this->mod_modalidade->getLimitesDaModalidade($modalidade_id);
+        $data['limites']['min_horas'] = date('H:i', strtotime($data['limites']['min_horas']));
+        $data['limites']['max_horas'] = date('H:i', strtotime($data['limites']['max_horas']));
+        echo json_encode($data);
+    }
+
 }
