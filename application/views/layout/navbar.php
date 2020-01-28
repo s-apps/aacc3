@@ -37,7 +37,7 @@
     </ul>
     <ul class="navbar-nav">
         <li class="nav-item">
-            <span class="navbar-text">Olá {{ constant('USUARIO_NOME') ~  ' | ' }}</span>
+            <span class="navbar-text text-white"><strong>{{ constant('USUARIO_NOME') }}</strong></span>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ constant('BASE_URL') }}logout"><i class="fas fa-sign-out-alt"></i> Sair</a>

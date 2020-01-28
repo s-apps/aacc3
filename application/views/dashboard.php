@@ -19,9 +19,38 @@
         </div>
     </div>     
     {% endif %}
+
+    {% if constant('USUARIO_NIVEL') == 1 %}
+    <div class="card-deck">
+  <div class="card border-dark">
+    <div class="card-body bg-secondary text-white">
+      <h3 class="card-title">1:30</h3>
+      <p class="card-text">Total em horas das atividades válidas.</p>
+    </div>
+  </div>
+  <div class="card border-dark">
+    <div class="card-body bg-secondary text-white">
+      <h3 class="card-title">2:30</h3>
+      <p class="card-text">Restante de horas a cumprir</p>
+    </div>
+  </div>
+  <div class="card border-dark">
+    <div class="card-body bg-secondary text-white">
+      <h3 class="card-title">6</h3>
+      <p class="card-text">Total de atividades aguardando validação.</p>
+    </div>
+  </div>
+  <div class="card border-dark">
+    <div class="card-body bg-secondary text-white">
+      <h3 class="card-title">40</h3>
+      <p class="card-text">Limite total em horas das atividades.</p>
+    </div>
+  </div>
+</div>    
+    {% endif %}
     
-    <div class="card mt-3">
-        <div class="card-header p-2">Avisos</div>
+    <div class="card border-dark mt-3">
+        <div class="card-header p-2 bg-dark text-white">Avisos</div>
         <div class="card-body p-3">
           {% if constant('USUARIO_NIVEL') == 0 %}
           <div id="toolbar">
