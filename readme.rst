@@ -9,15 +9,15 @@ Guia de instalação
 - Clone o sistema usando GIT: git clone https://github.com/s-apps/aacc3.git
 - A partir da raiz do sistema, crie o seguinte diretório com permissão de escrita: assets/img/comprovantes
 - Dentro do diretório application crie e insira as informações abaixo no arquivo com nome .env
-- DB_HOST='localhost' //link servidor do banco de dados
-- DB_USERNAME='username' //nome do usário
-- DB_PASSWORD='password' //senha usuário
-- DB_DATABASE='aacc3' //nome do banco
-- DB_DRIVER='mysqli' //deixe como está
-- EMAIL_HOST='host' //link servidor de email
-- EMAIL_PORT=587 //porta do servidor
-- EMAIL_USER='' //usuário 
-- EMAIL_PASS='' //senha
+DB_HOST='localhost' //link servidor do banco de dados
+DB_USERNAME='username' //nome do usário
+DB_PASSWORD='password' //senha usuário
+DB_DATABASE='aacc3' //nome do banco
+DB_DRIVER='mysqli' //deixe como está
+EMAIL_HOST='host' //link servidor de email
+EMAIL_PORT=587 //porta do servidor
+EMAIL_USER='' //usuário 
+EMAIL_PASS='' //senha
 
 
 
