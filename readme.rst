@@ -2,6 +2,10 @@
 AACC 3 - Atividades Acadêmico-Científico-Culturais
 ##################################################
 
+******************
+Guia de instalação
+******************
+
 ###################
 What is CodeIgniter
 ###################
