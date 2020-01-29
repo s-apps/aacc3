@@ -6,6 +6,10 @@ AACC 3 - Atividades Acadêmico-Científico-Culturais
 Guia de instalação
 ******************
 
+- Clone o sistema usando git: git clone https://github.com/s-apps/aacc3.git
+
+
+
 ###################
 What is CodeIgniter
 ###################
