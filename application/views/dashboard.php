@@ -32,7 +32,7 @@
   <div class="card border-dark">
     <div class="card-body bg-secondary text-white">
       <h3 class="card-title">{% if item.cargaHorariaRestante != "" %}{{ item.cargaHorariaRestante }}{% else %}{{ item.cargaHorariaLimite }}{% endif %}</h3>
-      <p class="card-text">Restante de horas a cumprir.</p>
+      <p class="card-text">Total de horas a realizar.</p>
     </div>
   </div>
   <div class="card border-dark">
