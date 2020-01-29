@@ -14,12 +14,18 @@ class Mod_dashboard extends CI_Model {
     return $avisos;
   }
 
-  public function getCargaHorariaAluno(){
-
-    //return horas realizadas
-    //return horas a realizar
-    // return atividades aguardando validação
-    //return atividades limite de horas
+  public function getCargaHorariaAluno($usuario_id){
+    $sql = "
+      SELECT
+      SEC_TO_TIME(SUM(TIME_TO_SEC(carga_horaria))) AS cargaHorariaTotal,
+      SEC_TO_TIME(TIME_TO_SEC((SELECT limite_atividades FROM config WHERE config_id = 'default')) - SUM(TIME_TO_SEC(carga_horaria))) AS cargaHorariaRestante,
+      SEC_TO_TIME(TIME_TO_SEC((SELECT limite_atividades FROM config WHERE config_id = 'default'))) AS cargaHorariaLimite
+      FROM 
+      atividade
+      WHERE usuario_id = $usuario_id
+    ";
+    $resultado = $this->db->query($sql);
+    return $resultado->result_array();
   }
 
   public function getLimiteAtividades(){
@@ -74,6 +80,7 @@ class Mod_dashboard extends CI_Model {
     $this->db->trans_complete();
     return $this->db->trans_status();
   }
+
 
 
 }

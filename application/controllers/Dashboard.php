@@ -21,7 +21,7 @@ class Dashboard extends CI_Controller {
 			//get horas a realizar
 			//get limite de horas total a cumprir
 			//get quantidade de atividades aguardando validação
-			$data = array();
+			$data['cargaHoraria'] = $this->mod_dashboard->getCargaHorariaAluno(USUARIO_ID);
 		}
 		$this->load->view('dashboard', $data);
 	}
