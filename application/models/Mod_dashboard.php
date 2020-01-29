@@ -24,8 +24,7 @@ class Mod_dashboard extends CI_Model {
       atividade
       WHERE usuario_id = $usuario_id
     ";
-    $resultado = $this->db->query($sql);
-    return $resultado->result_array();
+    return $this->db->query($sql)->result_array();
   }
 
   public function getLimiteAtividades(){
