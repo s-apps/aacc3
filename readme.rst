@@ -19,7 +19,8 @@ Guia de instalação
 | EMAIL_PORT=587 //porta do servidor
 | EMAIL_USER='usuario' //usuário 
 | EMAIL_PASS='senha' //senha
-| - Na raiz do sistema, instale as dependências do PHP usando composer: composer update
+|
+- Na raiz do sistema, instale as dependências do PHP usando composer: composer update
 - Edite o arquivo application/config/config.php e altere $config['base_url'] conforme o exemplo abaixo:
 - $config['base_url'] = 'http://aacc3.fatecgarca.edu.br/';
 - Edite o arquivo assets/js/aacc/comum.js e altere a variavel base_url conforme o exemplo abaixo:
