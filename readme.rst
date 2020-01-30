@@ -20,6 +20,10 @@ Guia de instalação
 - EMAIL_PASS='' //senha
 - Na raiz do sistema, instale as dependências do PHP usando composer: composer update
 - Dúvidas ou problemas? contato@silverio.eti.br
+- Edite o arquivo application/config/config.php e altere $config['base_url'] conforme o exemplo abaixo:
+- $config['base_url'] = 'http://aacc3.fatecgarca.edu.br/';
+- Edite o arquivo assets/js/aacc/comum.js e altere a variavel base_url conforme o exemplo abaixo:
+- var base_url = "http://aacc3.fatecgarca.edu.br/";
 
 ###################
 What is CodeIgniter
