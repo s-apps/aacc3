@@ -8,22 +8,23 @@ Guia de instalação
 
 - Clone o sistema usando GIT: git clone https://github.com/s-apps/aacc3.git
 - A partir da raiz do sistema, crie o seguinte diretório com permissão de escrita: assets/img/comprovantes
-- Dentro do diretório application crie e insira as informações abaixo no arquivo com nome .env
-- DB_HOST='localhost' //link servidor do banco de dados
-- DB_USERNAME='username' //nome do usário
-- DB_PASSWORD='password' //senha usuário
-- DB_DATABASE='aacc3' //nome do banco
-- DB_DRIVER='mysqli' //deixe como está
-- EMAIL_HOST='host' //link servidor de email
-- EMAIL_PORT=587 //porta do servidor
-- EMAIL_USER='' //usuário 
-- EMAIL_PASS='' //senha
+- Dentro do diretório application crie um arquivo com nome .env e insira as informações abaixo:
+- Obs: Não inclua os comentários //comentário
+| DB_HOST='localhost' //link servidor do banco de dados
+| DB_USERNAME='username' //nome do usário
+| DB_PASSWORD='password' //senha usuário
+| DB_DATABASE='aacc3' //nome do banco
+| DB_DRIVER='mysqli' //deixe essa linha como está
+| EMAIL_HOST='host' //link servidor de email
+| EMAIL_PORT=587 //porta do servidor
+| EMAIL_USER='usuario' //usuário 
+| EMAIL_PASS='senha' //senha
 - Na raiz do sistema, instale as dependências do PHP usando composer: composer update
-- Dúvidas ou problemas? contato@silverio.eti.br
 - Edite o arquivo application/config/config.php e altere $config['base_url'] conforme o exemplo abaixo:
 - $config['base_url'] = 'http://aacc3.fatecgarca.edu.br/';
 - Edite o arquivo assets/js/aacc/comum.js e altere a variavel base_url conforme o exemplo abaixo:
 - var base_url = "http://aacc3.fatecgarca.edu.br/";
+- Dúvidas ou problemas? contato@silverio.eti.br
 
 ###################
 What is CodeIgniter
